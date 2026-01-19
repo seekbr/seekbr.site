@@ -8,4 +8,4 @@ async function loadPartial(id, url) {
   el.innerHTML = await res.text();
 }
 
-loadPartial("site-header", "/assets/partials/header.html");
+loadPartial("site-header", "/partials/header.html");
