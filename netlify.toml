@@ -1,1 +1,5 @@
-/ /home 301
+[[redirects]]
+  from = "/"
+  to = "/home"
+  status = 301
+  force = true
