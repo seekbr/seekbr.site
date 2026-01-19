@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeekBR — Home</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="card">
+      <h1>Homepage</h1>
+      <p>Seu conteúdo aqui (projetos, etc).</p>
+    </section>
+
+    <footer class="footer">
+      <div class="inner container">
+        <span>© <span id="year"></span> seekbr.site</span>
+        <span>Feito com HTML/CSS</span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

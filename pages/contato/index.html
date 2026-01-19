@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato — SeekBR</title>
+
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #171a21;
+      --text: #e7e7ea; 
+      --muted: #a9adb7;
+      --border: #2a2f3a;
+      --accent: #5865F2;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(119, 255, 92, 0.25), transparent),
+                  radial-gradient(900px 500px at 90% 10%, rgba(34, 197, 75, 0.18), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .wrap { width: min(980px, 100%); display: grid; gap: 18px; }
+
+    header {
+      display: flex;
+      align-items: center; /* mudou de baseline -> center pra alinhar melhor com a foto */
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* ✅ bloco esquerdo: foto + textos */
+    .header-left{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    /* ✅ foto circular */
+    .header-avatar{
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      flex: 0 0 auto;
+    }
+
+    header h1 { margin: 0; font-size: clamp(22px, 2.2vw, 28px); }
+    header p  { margin: 0; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+      header { align-items: flex-start; }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent), var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+
+    form { display: grid; gap: 12px; }
+
+    label { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(124,92,255,.7);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.15);
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 520px) {
+      .row { grid-template-columns: 1fr; }
+    }
+
+    .hint { font-size: 12px; color: var(--muted); margin-top: -6px; }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    button {
+      border: 0;
+      background: var(--accent);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover { filter: brightness(1.05); }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+
+    .status {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .status.ok { color: var(--success); }
+    .status.err { color: var(--danger); }
+
+    .info h2 { margin: 0 0 10px 0; font-size: 16px; }
+    .info ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .info li { margin: 8px 0; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+      background: rgba(0,0,0,.18);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--danger);
+      box-shadow: 0 0 0 4px var(--muted);
+    }
+
+    /* ✅ Estados do dot */
+    .dot.online {
+      background: var(--success);
+      box-shadow: 0 0 0 4px #22c55e26;
+    }
+    .dot.offline {
+      background: var(--danger);
+      box-shadow: 0 0 0 4px #ef444426;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <!-- ✅ foto + textos -->
+      <div class="header-left">
+        <img class="header-avatar" src="/assets/images/seekbr.jpg" alt="SeekBR" />
+        <div>
+          <h1>Fale comigo</h1>
+          <p>Preencha o formulário e eu te respondo assim que possível.</p>
+        </div>
+      </div>
+
+      <p>📬 contato@seekbr.site</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <label>
+              Nome
+              <input name="name" type="text" placeholder="Seu nome" required minlength="2" />
+            </label>
+
+            <label>
+              E-mail
+              <input name="email" type="email" placeholder="seuemail@exemplo.com" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Assunto
+              <select name="subject" required>
+                <option value="" selected disabled>Selecione…</option>
+                <option>Dúvida</option>
+                <option>Orçamento</option>
+                <option>Parceria</option>
+                <option>Outro</option>
+              </select>
+            </label>
+
+            <label>
+              Telefone (opcional)
+              <input name="phone" type="tel" placeholder="(11) 99999-9999" />
+            </label>
+          </div>
+
+          <label>
+            Mensagem
+            <textarea name="message" placeholder="Escreva sua mensagem…" required minlength="10"></textarea>
+          </label>
+          <div class="hint">Dica: seja o mais específico possível pra eu te ajudar rápido.</div>
+
+          <div class="actions">
+            <button id="sendBtn" type="submit">Enviar</button>
+            <span id="status" class="status">Nada enviado ainda.</span>
+          </div>
+        </form>
+      </section>
+
+      <aside class="card info">
+        <h2>Outras formas de contato</h2>
+        <ul>
+          <li><strong>Email:</strong> contato@seekbr.site</li>
+          <li><strong>Discord:</strong> @seekbr</li>
+          <li><strong>Horário:</strong> seg–sex, 10h–18h</li>
+          <li><strong>Local:</strong> Brasil</li>
+        </ul>
+
+        <!-- ✅ IDs pra atualizar automaticamente -->
+        <div id="servicePill" class="pill" title="Status de atendimento">
+          <span id="serviceDot" class="dot offline"></span>
+          <span id="serviceText">Offline</span>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © SeekBR <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    // Só um exemplo: valida e "simula" envio sem backend.
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("status");
+    const btn = document.getElementById("sendBtn");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function setStatus(text, kind) {
+      statusEl.textContent = text;
+      statusEl.classList.remove("ok", "err");
+      if (kind) statusEl.classList.add(kind);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        setStatus("Preencha os campos obrigatórios corretamente.", "err");
+        form.reportValidity();
+        return;
+      }
+
+      btn.disabled = true;
+      setStatus("Enviando…");
+
+      // Simulação de envio
+      await new Promise(r => setTimeout(r, 700));
+
+      // Pegando os dados (exemplo)
+      const data = Object.fromEntries(new FormData(form).entries());
+      console.log("Dados do formulário:", data);
+
+      setStatus("Mensagem enviada! ✅", "ok");
+      form.reset();
+      btn.disabled = false;
+    });
+
+    // ============================================================
+    // ✅ Status Online/Offline automático (seg–sex 10:00–18:00 BRT)
+    // ============================================================
+
+    const servicePill = document.getElementById("servicePill");
+    const serviceDot = document.getElementById("serviceDot");
+    const serviceText = document.getElementById("serviceText");
+
+    // Pega dia/hora no fuso de Sao Paulo, mesmo se o visitante for de outro país
+    function getBrazilNowParts() {
+      const parts = new Intl.DateTimeFormat("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      }).formatToParts(new Date());
+
+      const map = {};
+      for (const p of parts) map[p.type] = p.value;
+
+      // weekday em pt-BR costuma vir como: "seg.", "ter.", "qua."...
+      const weekday = (map.weekday || "").toLowerCase();
+      const hour = Number(map.hour);
+      const minute = Number(map.minute);
+
+      return { weekday, hour, minute };
+    }
+
+    function isBusinessOpen({ weekday, hour, minute }) {
+      // Domingo: "dom.", Sábado: "sáb." (pode variar um pouco por navegador)
+      const isWeekend = weekday.startsWith("sáb") || weekday.startsWith("sab") || weekday.startsWith("dom");
+      if (isWeekend) return false;
+
+      const nowMinutes = hour * 60 + minute;
+      const start = 10 * 60; // 10:00
+      const end = 18 * 60;   // 18:00
+
+      return nowMinutes >= start && nowMinutes < end;
+    }
+
+    function updateServiceStatus() {
+      const now = getBrazilNowParts();
+      const online = isBusinessOpen(now);
+
+      if (online) {
+        serviceText.textContent = "Online";
+        servicePill.title = "Status de atendimento: Online (seg–sex, 10h–18h)";
+        serviceDot.classList.remove("offline");
+        serviceDot.classList.add("online");
+      } else {
+        serviceText.textContent = "Offline";
+        servicePill.title = "Status de atendimento: Offline (seg–sex, 10h–18h)";
+        serviceDot.classList.remove("online");
+        serviceDot.classList.add("offline");
+      }
+    }
+
+    // Roda uma vez ao carregar e depois atualiza a cada 30s
+    updateServiceStatus();
+    setInterval(updateServiceStatus, 30_000);
+  </script>
+</body>
+</html>
