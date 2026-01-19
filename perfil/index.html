@@ -5,27 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SeekBR — Home</title>
   <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
 
 <body>
-  <div class="wrap">
-    <div id="site-header"></div>
-    <script src="/script.js" defer></script>
+  <div id="site-header"></div>
+  <script src="/script.js" defer></script>
 
-    <div class="topbar">
-      <div class="left"></div>
-      <nav class="nav">
-        <a class="chip" href="/">Home</a>
-        <a class="chip" href="/contato/">Contato</a>
-      </nav>
-    </div>
-
-    <section class="card">
+  <main class="container">
+    <!-- Card estilo “perfil do Discord” -->
+    <section class="card profile-card">
       <div class="banner"></div>
 
       <div class="profile-head">
-        <!-- Avatar: troca por outra imagem se quiser -->
-        <img class="avatar" src="/assets/images/seekbr.jpg" alt="SeekBR" />
+        <img class="avatar profile-avatar" src="/assets/images/seekbr.jpg" alt="SeekBR" />
 
         <div class="head-row">
           <div class="who">
@@ -35,15 +28,18 @@
             </h1>
 
             <p class="bio">
-              Criador de conteúdo e desenvolvedor independente.<br>Estudante de Desenvolvimento de Sistemas na UFMG.
+              Criador de conteúdo e desenvolvedor independente.<br>
+              Estudante de Desenvolvimento de Sistemas na UFMG.
             </p>
 
-            <div class="statusline" title="Status (exemplo)">
-              <span id="statusDot" class="dot"></span>
-              <span id="statusText">Offline</span>
-              <span class="pill">Brasil</span>
-              <span class="pill">Minas Gerais</span>
-              <span class="pill">Belo Horizonte</span>
+            <div class="statusline" title="Status">
+              <span id="statusDot" class="dot offline" aria-hidden="true"></span>
+              <span id="statusText" class="muted">Offline</span>
+
+              <!-- Em vez de "pill" (que não existe no seu CSS), usamos chip -->
+              <span class="chip">Brasil</span>
+              <span class="chip">Minas Gerais</span>
+              <span class="chip">Belo Horizonte</span>
             </div>
           </div>
 
@@ -54,17 +50,18 @@
         </div>
       </div>
 
-      <div class="content">
-        <div class="panel">
-          <h2>Links</h2>
+      <!-- Conteúdo em 2 painéis (aproveita “mini” + “hero-grid”) -->
+      <div class="profile-content">
+        <div class="mini">
+          <h3>Links</h3>
 
-          <div class="links">
+          <div class="profile-links">
             <a class="linkrow" href="https://instagram.com/oseekbr" target="_blank" rel="noopener">
               <div class="link-left">
                 <div class="link-title">Instagram</div>
                 <div class="link-sub">@oseekbr</div>
               </div>
-              <span class="pill">Acessar</span>
+              <span class="chip">Acessar</span>
             </a>
 
             <a class="linkrow" href="https://www.youtube.com/@oseekbr" target="_blank" rel="noopener">
@@ -72,7 +69,7 @@
                 <div class="link-title">YouTube</div>
                 <div class="link-sub">@oseekbr</div>
               </div>
-              <span class="pill">Acessar</span>
+              <span class="chip">Acessar</span>
             </a>
 
             <a class="linkrow" href="https://discord.com/users/1146906311582294127" target="_blank" rel="noopener">
@@ -80,34 +77,40 @@
                 <div class="link-title">Discord</div>
                 <div class="link-sub">@seekbr</div>
               </div>
-              <span class="pill">Acessar</span>
+              <span class="chip">Acessar</span>
             </a>
           </div>
         </div>
 
-        <div class="panel">
-          <h2>Projetos</h2>
+        <div class="mini">
+          <h3>Projetos</h3>
           <div class="about">
-            <ul>
-                <li>Locternum</li>
-                <li>Youtube</li>
-                <li></li>
+            <ul class="list-clean">
+              <li>Locternum</li>
+              <li>YouTube</li>
             </ul>
-            Estou constantemente ativo no meu servidor do Discord.
+            <p class="muted" style="margin:10px 0 0;">
+              Estou constantemente ativo no meu servidor do Discord.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      © SeekBR <span id="year"></span>
+      <div class="footer-inner">
+        <div>© SeekBR <span id="year"></span></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="/contato/">Contato</a>
+          <a href="/perfil/">Perfil</a>
+        </div>
+      </div>
     </footer>
-  </div>
+  </main>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Status automático igual ao /contato (seg–sex 10–18 no fuso do Brasil)
     const statusDot = document.getElementById("statusDot");
     const statusText = document.getElementById("statusText");
 
@@ -135,8 +138,8 @@
       if (isWeekend) return false;
 
       const nowMinutes = hour * 60 + minute;
-      const start = 10 * 60;
-      const end = 18 * 60;
+      const start = 12 * 60 + 30;
+      const end = 22 * 60;
 
       return nowMinutes >= start && nowMinutes < end;
     }
@@ -145,13 +148,9 @@
       const now = getBrazilNowParts();
       const online = isBusinessOpen(now);
 
-      if (online) {
-        statusText.textContent = "Online";
-        statusDot.classList.add("online");
-      } else {
-        statusText.textContent = "Offline";
-        statusDot.classList.remove("online");
-      }
+      statusDot.classList.toggle("online", online);
+      statusDot.classList.toggle("offline", !online);
+      statusText.textContent = online ? "Online" : "Offline";
     }
 
     updateProfileStatus();
