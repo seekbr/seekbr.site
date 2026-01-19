@@ -6,27 +6,191 @@
   <title>SeekBR — Home</title>
   <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
   <div id="site-header"></div>
   <script src="/script.js" defer></script>
 
-  <main class="container">
-    <section class="card">
-      <h1>Homepage</h1>
-      <p>Seu conteúdo aqui (projetos, etc).</p>
+  <main id="top" class="container">
+    <section class="hero anchor">
+      <div class="hero-grid">
+        <div class="card hero-main">
+          <span class="kicker">🧩 Portfólio / Homepage</span>
+          <h1>Eu crio projetos e deixo eles bonitos de mostrar.</h1>
+          <p class="lead">
+            Aqui você pode colocar uma descrição curta sobre você, o que você faz, e o tipo de coisa que você curte construir
+            (bots, sites, jogos, design, etc). A ideia é ser direto e deixar os projetos falarem por você.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#projetos">Ver projetos</a>
+            <a class="btn" href="#contato">Falar comigo</a>
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="mini">
+            <h3>⚡ Destaque</h3>
+            <p>Coloque aqui um projeto principal, um objetivo, ou uma frase que te represente.</p>
+          </div>
+
+          <div class="mini">
+            <h3>🧰 Stack / Ferramentas</h3>
+            <div class="chiprow">
+              <span class="chip">HTML/CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Python</span>
+              <span class="chip">Discord Bot</span>
+              <span class="chip">Godot</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>🔗 Links</h3>
+            <p>
+              GitHub / YouTube / Discord / Instagram…<br/>
+              Você pode colocar aqui seus links principais.
+            </p>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <footer class="footer">
-      <div class="inner container">
-        <span>© <span id="year"></span> seekbr.site</span>
-        <span>Feito com HTML/CSS</span>
+    <section id="projetos" class="anchor">
+      <div class="section-head">
+        <div>
+          <h2>Projetos</h2>
+          <p>Vários blocos — é só duplicar os cards.</p>
+        </div>
+        <p>Última atualização: <span id="updated"></span></p>
+      </div>
+
+      <div class="grid">
+        <!-- CARD 1 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 01 — Nome</h3>
+            <span class="badge">Em andamento</span>
+          </div>
+          <p>
+            Descrição curta do projeto. O que ele faz, por que é legal, e pra quem serve.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 02 — Nome</h3>
+            <span class="badge">Concluído</span>
+          </div>
+          <p>
+            Outra descrição. Você pode colocar tecnologias usadas, desafios, etc.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 03 — Nome</h3>
+            <span class="badge">Prototype</span>
+          </div>
+          <p>
+            Cards são ótimos pra portfólio. Duplicou, pronto.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 04 — Nome</h3>
+            <span class="badge">Open Source</span>
+          </div>
+          <p>
+            Se tiver GitHub, esse “Abrir” pode apontar pro repositório.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+
+        <!-- CARD 5 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 05 — Nome</h3>
+            <span class="badge">Ferramenta</span>
+          </div>
+          <p>
+            Coloque o que importa pra alguém entender em 10 segundos.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+
+        <!-- CARD 6 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Projeto 06 — Nome</h3>
+            <span class="badge">Jogo</span>
+          </div>
+          <p>
+            Um projeto de jogo? Coloca screenshots e um link mais tarde.
+          </p>
+          <a class="more" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="sobre" class="anchor">
+      <div class="section-head">
+        <div>
+          <h2>Sobre</h2>
+          <p>Um resumo rápido: quem você é e o que você faz.</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 18px;">
+        <p style="margin:0; color: var(--muted); line-height: 1.6;">
+          Escreva aqui uma bio curta. Você pode falar do seu foco (ex: programação, bots, jogos),
+          o que você quer aprender, e o tipo de projeto que você curte construir.
+        </p>
+      </div>
+    </section>
+
+    <section id="contato" class="anchor">
+      <div class="section-head">
+        <div>
+          <h2>Contato</h2>
+          <p>Deixe um jeito fácil de falar com você.</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 18px;">
+        <p style="margin:0 0 10px; color: var(--muted);">
+          Pode ser email, Discord, Instagram, o que você quiser.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn" href="mailto:seuemail@exemplo.com">📩 Email</a>
+          <!-- Coloque seu ID real do Discord aqui -->
+          <a class="btn" href="https://discord.com/users/SEU_ID" target="_blank" rel="noopener">💬 Discord</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">🐙 GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© <span id="year"></span> SeekBR</span>
       </div>
     </footer>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Atualiza ano e data automaticamente
+    const now = new Date();
+    document.getElementById("year").textContent = now.getFullYear();
+
+    const fmt = new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" });
+    document.getElementById("updated").textContent = fmt.format(now);
   </script>
 </body>
 </html>
