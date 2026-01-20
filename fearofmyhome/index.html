@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fear of my Home</title>
+
+  <style>
+    :root{
+      --bg: #0f1115;
+      --panel: #151923;
+      --panel-2: #1a2030;
+      --text: #e7e7ea;
+      --muted: #a7a7b4;
+      --line: rgba(255,255,255,.10);
+      --accent: #a78bfa;   /* roxo */
+      --accent-2:#60a5fa;  /* azul */
+      --warn:#f59e0b;      /* amarelo */
+      --good:#34d399;      /* verde */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --maxw: 980px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { margin:0; padding:0; }
+    body{
+      background: radial-gradient(1200px 700px at 30% -10%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(900px 600px at 80% 0%, rgba(96,165,250,.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      overflow-wrap: anywhere;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-decoration-color: rgba(167,139,250,.8); }
+    .wrap{
+      max-width: var(--maxw);
+      margin: 40px auto;
+      padding: 0 18px 60px;
+    }
+
+    /* Header */
+    header.hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 22px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(700px 220px at 20% 0%, rgba(167,139,250,.18), transparent 60%),
+                  radial-gradient(700px 220px at 90% 0%, rgba(96,165,250,.14), transparent 60%);
+      pointer-events:none;
+    }
+    header.hero > *{ position:relative; }
+
+    .title{
+      display:flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin:0;
+    }
+    .title h1{
+      margin:0;
+      font-size: 34px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .badge{
+      font-size: 12px;
+      color: rgba(255,255,255,.85);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(167,139,250,.35);
+      background: rgba(167,139,250,.10);
+    }
+    .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    /* Content layout */
+    main{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    section.card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 20px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    h2, h3{
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    h2{
+      font-size: 22px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    h2 .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(167,139,250,.12);
+      flex: 0 0 auto;
+    }
+    h3{
+      margin-top: 16px;
+      font-size: 18px;
+      color: rgba(255,255,255,.92);
+    }
+
+    p{ margin: 10px 0; color: rgba(255,255,255,.92); }
+    .muted{ color: var(--muted); }
+
+    hr.sep{
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 14px 0;
+    }
+
+    /* Quote */
+    blockquote{
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-left: 4px solid rgba(167,139,250,.8);
+      background: rgba(167,139,250,.08);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: rgba(255,255,255,.95);
+    }
+
+    /* Callout */
+    .callout{
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin: 14px 0;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .callout .icon{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(96,165,250,.12);
+      border: 1px solid rgba(96,165,250,.25);
+      color: rgba(255,255,255,.9);
+      font-weight: 700;
+      user-select:none;
+    }
+    .callout p{ margin:0; color: rgba(255,255,255,.92); }
+
+    /* Equation */
+    .equation{
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      overflow-x: auto;
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      color: rgba(255,255,255,.92);
+      white-space: pre;
+    }
+
+    /* Table */
+    table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    thead th{
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 650;
+      color: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      white-space: nowrap;
+    }
+    tbody td{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9);
+      white-space: nowrap;
+    }
+    tbody tr:last-child td{ border-bottom: none; }
+
+    /* Footer links */
+    .links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .pill{
+      border: 1px solid rgba(167,139,250,.35);
+      background: rgba(167,139,250,.10);
+      color: rgba(255,255,255,.92);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+    }
+    .pill .mini{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 3px rgba(96,165,250,.10);
+    }
+
+    /* Print */
+    @media print{
+      body{ background: #fff; color: #111; }
+      header.hero, section.card{ box-shadow:none; }
+      a{ color:#111; text-decoration: underline; }
+    }
+
+        /* ===== Modal (lista de perícias) ===== */
+    .modal-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 9999;
+    }
+
+    .modal-backdrop.is-open{ display: flex; }
+
+    .modal{
+    width: min(920px, 100%);
+    max-height: min(85vh, 720px);
+    overflow: auto;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    }
+
+    .modal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    }
+
+    .modal-title{
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    }
+
+    .modal-close{
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    line-height: 1;
+    }
+
+    .modal-close:hover{
+    border-color: rgba(167,139,250,.35);
+    background: rgba(167,139,250,.10);
+    }
+
+    .modal .muted{ margin-top: 0; }
+
+    .modal table{
+    margin-top: 10px;
+    }
+
+    /* botão estilo pill, reutiliza seu visual */
+    .btn-pill{
+    border: 1px solid rgba(167,139,250,.35);
+    background: rgba(167,139,250,.10);
+    color: rgba(255,255,255,.92);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    }
+
+    .btn-pill:hover{
+    background: rgba(167,139,250,.16);
+    border-color: rgba(167,139,250,.45);
+    }
+
+    .btn-pill .mini{
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 3px rgba(96,165,250,.10);
+    }
+
+    /* acessibilidade: quando modal aberto, trava scroll do body */
+    body.modal-open{ overflow: hidden; }
+
+    /* ===== Banner ===== */
+    .banner{
+    margin-top: 14px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
+    background: rgba(0,0,0,.25);
+    }
+
+    /* imagem */
+    .banner img{
+    display: block;
+    width: 100%;
+    height: clamp(170px, 26vw, 320px);
+    object-fit: cover;
+    object-position: 60% 45%; /* ajusta o recorte (a chama fica mais visível) */
+    filter: saturate(0.95) contrast(0.98) brightness(0.9);
+    }
+
+    /* brilho da “chama” em cima do banner */
+    .banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    /* posição aproximada da chama (ajuste se quiser) */
+    --fx: 82%;
+    --fy: 47%;
+
+    background:
+        radial-gradient(420px 320px at var(--fx) var(--fy),
+        rgba(245,158,11, var(--flameA, .100)),
+        rgba(245,158,11, 0) 60%),
+        radial-gradient(900px 600px at var(--fx) var(--fy),
+        rgba(96,165,250, var(--glowA, .75)),
+        rgba(96,165,250, 0) 70%);
+    mix-blend-mode: screen;
+    opacity: .95;
+    }
+
+    /* garante que seu conteúdo fique acima do glow do body::after */
+    .wrap, header.hero, main, section.card, .banner{
+    position: relative;
+    z-index: 1;
+    }
+
+    /* opcional: dá uma “tinta” nos detalhes quando o glow existe */
+    header.hero{
+    box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(245,158,11, .05);
+    }
+  </style>
+</head>
+
+<script>
+  // pulsar glow como chama (leve, sem travar)
+  let t = 0;
+  function tick(){
+    t += 0.016;
+    const flame = 0.22 + Math.sin(t * 2.3) * 0.06 + Math.sin(t * 7.1) * 0.03;
+    const glow  = 0.11 + Math.sin(t * 1.6) * 0.03;
+
+    document.documentElement.style.setProperty("--flameA", flame.toFixed(3));
+    document.documentElement.style.setProperty("--glowA", glow.toFixed(3));
+
+    // glow no site inteiro (bem discreto)
+    document.documentElement.style.setProperty("--siteFlameA", (flame * 0.35).toFixed(3));
+    document.documentElement.style.setProperty("--siteGlowA", (glow  * 0.35).toFixed(3));
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+</script>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="title">
+        <h1>Fear of my Home</h1>
+      </div>
+      <p class="subtitle">
+        Um sistema sobre medo, angústia e sobrevivência em <strong>O Lar</strong>. Fuja.
+      </p>
+    </header>
+
+    <section class="banner" aria-label="Fear of my Home">
+    <img
+        src="/assets/images/fearofmyhome.png"
+        loading="lazy"
+    />
+    </section>
+
+
+    <main>
+      <!-- Capítulo 1 -->
+      <section class="card" id="capitulo-1">
+        <h2><span class="dot"></span>Capítulo 1: Criação de Personagem</h2>
+        <hr class="sep" />
+
+        <h3>Atributos</h3>
+        <p>
+          Os personagens de <em>Fear of my Home</em> possuem 3 atributos: <strong>Físico (FSC)</strong>, <strong>Mente (MNT)</strong> e <strong>Instinto (INS)</strong>.
+          Durante a criação do seu personagem, você deve escolher um atributo para receber <strong>1</strong> ponto, um para receber <strong>2</strong> e o último para receber <strong>3</strong>.
+          Após isso, você pode adicionar <strong>+1</strong> ponto a qualquer atributo.
+        </p>
+
+        <blockquote>
+          Luca é um garoto atlético e tem sentidos muito aguçados. Ele escolheu 3 pontos para Físico, 2 pontos para Instinto e 1 ponto para Mente.
+          Além disso, ele adicionou mais 1 ponto em Instinto, ficando com <strong>FSC 3, MNT 1, INS 3</strong>.
+        </blockquote>
+
+        <h3>Perícias</h3>
+        <p>
+          Enquanto os atributos indicam <strong>potencial bruto</strong>, as perícias mostram onde o personagem sabe <strong>agir com precisão</strong>. 
+          Todas as perícias começam com valor <strong>1</strong> e durante a criação, você pode distribuir <strong>6 pontos</strong> adicionais entre elas. 
+          No máximo <strong>duas perícias</strong> podem ter <strong>3 pontos</strong>, e <strong>nenhuma</strong> pode ter <strong>4 ou mais</strong>.
+        </p>
+
+        <button class="btn-pill" id="openSkills" type="button">
+            Lista de perícias
+        </button>
+
+
+        <h3>Conceitos</h3>
+        <p>
+          Os conceitos são frases curtas que descrevem algo marcante no personagem:
+          uma característica física, um pertence, um hábito, uma fama, um trauma ou uma condição social.
+          Durante a criação, você deve criar 4 conceitos, cada um deve ter um sentido positivo e negativo.
+        </p>
+
+        <blockquote>
+          Augusto usa óculos desde criança, ele se sente mais atento e confiante quando está analisando algo com calma. 
+          Fernando também usa óculos, mas, na escola, isso virou motivo de zombaria constante. 
+          Enquanto Augusto pode receber um bônus de <strong>+1 em Saber</strong>, Fernando pode receber <strong>-1 em Conectar</strong> mesmo ambos escolhendo o conceito "Óculos".
+        </blockquote>
+
+        <div class="callout">
+          <div class="icon">!</div>
+          <p>
+            Conceitos nunca concedem bônus automáticos. Eles só entram em jogo quando fizerem sentido narrativo e sempre a critério do mestre podendo oferecer um dado segurado a mais ou a menos.
+          </p>
+        </div>
+      </section>
+
+      <!-- Capítulo 2 -->
+      <section class="card" id="capitulo-2">
+        <h2><span class="dot"></span>Capítulo 2: Testes</h2>
+        <hr class="sep" />
+
+        <h3>Testes</h3>
+        <p>
+          Um teste acontece quando um personagem realiza uma ação cuja consequência pode variar de acordo com a rolagem.
+          Se existem duas ou mais consequências possíveis, a consequência real é definida a partir dos dados.
+          Se uma ação não oferece risco real ou consequências significativas, o mestre pode permitir que ela aconteça sem rolagem.
+        </p>
+
+        <h3>Rolagens</h3>
+        <p>
+          A rolagem utiliza dados de 6 faces (<strong>d6</strong>) e sempre é associada a um atributo e a uma perícia. 
+          Role uma quantidade de d6 iguais a soma do <strong>atributo</strong> e da <strong>perícia</strong>. 
+          Após rolar, segure uma quantidade de dados igual á <strong>perícia</strong> e some seus valores. 
+          Depois, a soma é comparada com a <strong>Dificuldade do Teste (DT)</strong>.
+        </p>
+
+        <blockquote>
+          Luca está fugindo do Cabeça de Abóbora. No meio do caminho havia uma casca de banana.
+          O mestre pede um teste <strong>Desviar</strong> (Físico com Reflexos).
+          Luca possui <strong>Físico 3</strong> e <strong>Reflexos 2</strong>, por isso rola <strong>5d6</strong> e tirou <strong>6, 2, 3, 1, 1</strong> porém segura apenas
+          <strong>2 dados</strong> ficando com o <strong>6</strong> e o <strong>3</strong> resultando em <strong>9</strong>.
+        </blockquote>
+
+        <h3>Problemas</h3>
+        <p>
+          Problemas são testes contra uma DT pré-determinada. Ou seja: quando o mestre pede o teste, a DT já está definida.
+          Por padrão, você pode usar a tabela abaixo para escolher a DT:
+        </p>
+
+        <table aria-label="Tabela de Dificuldades">
+          <thead>
+            <tr>
+              <th>Dificuldade</th>
+              <th>Trivial</th>
+              <th>Fácil</th>
+              <th>Médio</th>
+              <th>Difícil</th>
+              <th>Muito Difícil</th>
+              <th>Quase Impossível</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Valor da DT</strong></td>
+              <td>6</td>
+              <td>9</td>
+              <td>12</td>
+              <td>15</td>
+              <td>18</td>
+              <td>21</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Conflitos</h3>
+        <p>
+          Conflitos são testes onde a DT é a rolagem do oponente. Quando dois personagens se enfrentam através de um teste,
+          <strong>o maior resultado vence</strong>.
+        </p>
+      </section>
+    </main>
+  </div>
+  <!-- Modal: Lista de perícias -->
+  <div class="modal-backdrop" id="skillsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="skillsTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="skillsTitle">Lista de Perícias</h3>
+        <button class="modal-close" id="closeSkills" type="button" aria-label="Fechar">✕</button>
+      </div>
+
+      <p class="muted">
+        Perícias e Especializações.
+      </p>
+      <table aria-label="Tabela de Perícias">
+        <thead>
+          <tr>
+            <th>Perícia</th>
+            <th>Físico (FSC)</th>
+            <th>Mente (MNT)</th>
+            <th>Instinto (INS)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brigar</strong></td>
+            <td>Bater</td>
+            <td>Acertar</td>
+            <td>Bloqueiar</td>
+          </tr>
+          <tr>
+            <td><strong>Cuidar</strong></td>
+            <td>Salvar</td>
+            <td>Medicar</td>
+            <td>Curar</td>
+          </tr>
+          <tr>
+            <td><strong>Enganar</strong></td>
+            <td>Esconder</td>
+            <td>Mentir</td>
+            <td>Omitir</td>
+          </tr>
+          <tr>
+            <td><strong>Equilibrar</strong></td>
+            <td>Escalar</td>
+            <td>Calcular</td>
+            <td>Fluir</td>
+          </tr>
+          <tr>
+            <td><strong>Esquivar</strong></td>
+            <td>Desviar</td>
+            <td>Prever</td>
+            <td>Pressentir</td>
+          </tr>
+          <tr>
+            <td><strong>Falar</strong></td>
+            <td>Intimidar</td>
+            <td>Convencer</td>
+            <td>Conectar</td>
+          </tr>
+          <tr>
+            <td><strong>Pensar</strong></td>
+            <td>Aprender</td>
+            <td>Saber</td>
+            <td>Lembrar</td>
+          </tr>
+          <tr>
+            <td><strong>Perceber</strong></td>
+            <td>Vasculhar</td>
+            <td>Deduzir</td>
+            <td>Notar</td>
+          </tr>
+          <tr>
+            <td><strong>Resistir</strong></td>
+            <td>Suportar</td>
+            <td>Persistir</td>
+            <td>Enfrentar</td>
+          </tr>
+          <tr>
+            <td><strong>Sentir</strong></td>
+            <td>Rastrear</td>
+            <td>Interpretar</td>
+            <td>Temer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+  const openBtn = document.getElementById("openSkills");
+  const modal = document.getElementById("skillsModal");
+  const closeBtn = document.getElementById("closeSkills");
+
+  function openModal() {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    openBtn.focus();
+  }
+
+  openBtn?.addEventListener("click", openModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  // clicar fora do card fecha
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // ESC fecha
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>
