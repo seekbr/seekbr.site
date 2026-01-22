@@ -3,3 +3,8 @@
   to = "/home"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/projeto/*"
+  to = "/projeto/"
+  status = 200

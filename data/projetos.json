@@ -1,0 +1,31 @@
+[
+  {
+    "slug": "locternum",
+    "title": "Locternum",
+    "type": "Videogame",
+    "description": "Você acorda em um lugar estranho; tudo está contra a sua sobrevivência. Fuja.",
+    "tags": ["Game", "Horror", "Indie"],
+    "links": [
+      { "label": "Instagram", "url": "https://instagram.com/oseekbr" },
+      { "label": "YouTube", "url": "https://www.youtube.com/@oseekbr" }
+    ],
+    "code": {
+      "language": "html",
+      "content": "<!-- Exemplo de código do projeto -->\n<div class=\"scene\">\n  <h2>Locternum</h2>\n  <p>Bem-vindo ao prólogo…</p>\n</div>\n"
+    }
+  },
+  {
+    "slug": "fear-of-my-home",
+    "title": "Fear of my Home",
+    "type": "RPG / Web",
+    "description": "Um projeto narrativo com foco em horror e atmosfera, dentro do universo Locternum.",
+    "tags": ["RPG", "Narrativa", "Web"],
+    "links": [
+      { "label": "Contato", "url": "/contato/" }
+    ],
+    "code": {
+      "language": "js",
+      "content": "// Exemplo de código do projeto\nexport function start(){\n  console.log('Fear of my Home iniciado');\n}\n"
+    }
+  }
+]

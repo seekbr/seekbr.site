@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projetos — SeekBR</title>
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- extras só pra esta página (mantém padrão do seu CSS) -->
+  <style>
+    .project-page { padding: 22px 0; }
+
+    /* Top “Discord-like” do projeto */
+    .proj-hero{
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .proj-hero h1{
+      margin: 0 0 8px;
+      font-size: 26px; /* não usar o h1 gigante padrão */
+      letter-spacing: -0.2px;
+      line-height: 1.15;
+    }
+    .proj-hero p{ margin:0; color: var(--muted); line-height:1.55; }
+
+    /* Badge/pill reaproveitando seu visual de chip */
+    .pilllike{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+
+    /* Lista de links */
+    .linkscol{
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .linkrow{
+      display: flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    .linkrow:hover{
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.16);
+    }
+    .link-left{ min-width:0; display:grid; gap:2px; }
+    .link-title{ font-weight:700; font-size:14px; }
+    .link-sub{ color:var(--muted); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Code box */
+    pre{
+      margin: 0;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow: auto;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      color: rgba(255,255,255,.88);
+      white-space: pre;
+    }
+
+    /* Header do projeto com avatar pequenininho estilo Discord */
+    .proj-topbar{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+    .proj-title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width:0;
+    }
+    .proj-title h2{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .muted{ color: var(--muted); }
+  </style>
+</head>
+
+<body>
+  <!-- usa a mesma topbar do seu site -->
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <img class="avatar" src="/assets/images/seekbr.jpg" alt="SeekBR">
+        <span>SeekBR</span>
+      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/perfil/">Perfil</a>
+        <a href="/contato/">Contato</a>
+        <a href="/projeto/" aria-current="page">Projetos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container project-page">
+    <!-- área que vira vitrine OU detalhe -->
+    <div id="view"></div>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© SeekBR <span id="year"></span></div>
+        <div class="muted">/projeto/{slug}</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const view = document.getElementById("view");
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getSlugFromPath() {
+      // Ex: /projeto/locternum  -> "locternum"
+      // Ex: /projeto/          -> ""
+      const path = window.location.pathname;
+      const base = "/projeto/";
+      if (!path.startsWith(base)) return "";
+      const rest = path.slice(base.length);
+      return rest.replaceAll("/", "").trim();
+    }
+
+    async function loadProjects() {
+      const res = await fetch("/data/projetos.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("Não consegui carregar /data/projetos.json");
+      return res.json();
+    }
+
+    function renderIndex(projects) {
+      view.innerHTML = `
+        <section class="proj-hero">
+          <h1>Vitrine de Projetos</h1>
+          <p>Abra um projeto para ver descrição, links e um trecho de código. Para adicionar novo projeto, basta editar <strong>data/projetos.json</strong>.</p>
+          <div>
+            <span class="pilllike">URL dinâmica</span>
+            <span class="pilllike">/projeto/{slug}</span>
+          </div>
+        </section>
+
+        <section class="anchor" style="padding-top:18px;">
+          <div class="section-head">
+            <h2>Todos os projetos</h2>
+            <p>${projects.length} item(ns)</p>
+          </div>
+
+          <div class="grid">
+            ${projects.map(p => `
+              <article class="project">
+                <div class="project-top">
+                  <h3>${escapeHtml(p.title)}</h3>
+                  <span class="badge">${escapeHtml(p.type || "Projeto")}</span>
+                </div>
+                <p>${escapeHtml(p.description || "")}</p>
+                <a class="more" href="/projeto/${encodeURIComponent(p.slug)}">Abrir ↗</a>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderProject(p) {
+      const tags = Array.isArray(p.tags) ? p.tags : [];
+      const links = Array.isArray(p.links) ? p.links : [];
+      const codeLang = p.code?.language || "code";
+      const codeContent = p.code?.content || "";
+
+      view.innerHTML = `
+        <div class="proj-topbar">
+          <div class="proj-title">
+            <div>
+              <h2>${escapeHtml(p.title)}</h2>
+              <div class="muted">/projeto/${escapeHtml(p.slug)}</div>
+            </div>
+          </div>
+          <div class="cta-row" style="margin:0;">
+            <a class="btn" href="/projeto/">← Voltar</a>
+            ${links[0]?.url ? `<a class="btn primary" href="${escapeHtml(links[0].url)}" target="${String(links[0].url).startsWith("/") ? "" : "_blank"}" rel="noopener">Abrir link</a>` : ""}
+          </div>
+        </div>
+
+        <section class="proj-hero">
+          <div>
+            <span class="pilllike">${escapeHtml(p.type || "Projeto")}</span>
+            ${tags.slice(0, 6).map(t => `<span class="pilllike">${escapeHtml(t)}</span>`).join("")}
+          </div>
+          <p style="margin-top:12px;">${escapeHtml(p.description || "")}</p>
+
+          ${links.length ? `
+            <div class="linkscol">
+              ${links.map(l => `
+                <a class="linkrow" href="${escapeHtml(l.url)}" target="${String(l.url).startsWith("/") ? "" : "_blank"}" rel="noopener">
+                  <div class="link-left">
+                    <div class="link-title">${escapeHtml(l.label)}</div>
+                    <div class="link-sub">${escapeHtml(l.url)}</div>
+                  </div>
+                  <span class="chip">Acessar</span>
+                </a>
+              `).join("")}
+            </div>
+          ` : ``}
+        </section>
+
+        <section style="padding-top:18px;">
+          <div class="section-head">
+            <h2>Código (${escapeHtml(codeLang)})</h2>
+            <p class="muted">exibido do projects.json</p>
+          </div>
+
+          <div class="card" style="padding:14px;">
+            <pre><code>${escapeHtml(codeContent)}</code></pre>
+          </div>
+        </section>
+      `;
+    }
+
+    (async function init(){
+      try{
+        const projects = await loadProjects();
+        const slug = getSlugFromPath();
+
+        if (!slug) {
+          renderIndex(projects);
+          return;
+        }
+
+        const found = projects.find(p => p.slug === slug);
+        if (!found) {
+          view.innerHTML = `
+            <section class="proj-hero">
+              <h1 style="font-size:22px;margin:0 0 8px;">Projeto não encontrado</h1>
+              <p class="muted">Não existe um projeto com slug <strong>${escapeHtml(slug)}</strong> em <strong>/data/projects.json</strong>.</p>
+              <div class="cta-row" style="margin-top:14px;">
+                <a class="btn primary" href="/projeto/">Voltar para a vitrine</a>
+              </div>
+            </section>
+          `;
+          return;
+        }
+
+        renderProject(found);
+      } catch (err) {
+        view.innerHTML = `
+          <section class="proj-hero">
+            <h1 style="font-size:22px;margin:0 0 8px;">Erro ao carregar projetos</h1>
+            <p class="muted">${escapeHtml(err?.message || err)}</p>
+            <p class="muted">Confere se <strong>/data/projetos.json</strong> existe e se o Live Server está apontando para a raiz do projeto.</p>
+          </section>
+        `;
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>
