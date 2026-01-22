@@ -164,6 +164,23 @@
       return rest.split("/").filter(Boolean)[0] || "";
     }
 
+    async function loadCodeText(codeObj) {
+    // Aceita: {content:"..."} OU {src:"/data/codes/arquivo.py"}
+    if (!codeObj) return "";
+
+    if (typeof codeObj.content === "string" && codeObj.content.trim() !== "") {
+        return codeObj.content;
+    }
+
+    if (typeof codeObj.src === "string" && codeObj.src.trim() !== "") {
+        const res = await fetch(codeObj.src, { cache: "no-store" });
+        if (!res.ok) throw new Error("Não consegui carregar o código em " + codeObj.src);
+        return await res.text();
+    }
+
+    return "";
+    }
+
     async function loadProjects() {
       const res = await fetch("/data/projetos.json", { cache: "no-store" });
       if (!res.ok) throw new Error("Não consegui carregar /data/projetos.json");
@@ -203,72 +220,83 @@
       `;
     }
 
-    function renderProject(p) {
-      const tags = Array.isArray(p.tags) ? p.tags : [];
-      const links = Array.isArray(p.links) ? p.links : [];
-      const codeLang = p.code?.language || "code";
-      const codeContent = p.code?.content || "";
+    async function renderProject(p) {
+        const tags = Array.isArray(p.tags) ? p.tags : [];
+        const links = Array.isArray(p.links) ? p.links : [];
+        const codeLang = p.code?.language || "code";
 
-      const primaryLink = links[0]?.url ? String(links[0].url) : "";
+        const primaryLink = links[0]?.url ? String(links[0].url) : "";
 
-      view.innerHTML = `
-        <div class="proj-topbar">
-          <div class="proj-title">
+        // Renderiza a estrutura primeiro (com “Carregando…”)
+        view.innerHTML = `
+            <div class="proj-topbar">
+            <div class="proj-title">
+                <div>
+                <h2>${escapeHtml(p.title)}</h2>
+                <div class="muted">/projeto/${escapeHtml(p.slug)}</div>
+                </div>
+            </div>
+
+            <div class="cta-row" style="margin:0;">
+                <a class="btn" href="/projeto/">← Voltar</a>
+                ${primaryLink ? `
+                <a class="btn primary" href="${escapeHtml(primaryLink)}"
+                    ${isExternalUrl(primaryLink) ? 'target="_blank" rel="noopener"' : ''}>
+                    Abrir link
+                </a>` : ""}
+            </div>
+            </div>
+
+            <section class="proj-hero">
             <div>
-              <h2>${escapeHtml(p.title)}</h2>
-              <div class="muted">/projeto/${escapeHtml(p.slug)}</div>
+                <span class="pilllike">${escapeHtml(p.type || "Projeto")}</span>
+                ${tags.slice(0, 6).map(t => `<span class="pilllike">${escapeHtml(t)}</span>`).join("")}
             </div>
-          </div>
 
-          <div class="cta-row" style="margin:0;">
-            <a class="btn" href="/projeto/">← Voltar</a>
-            ${primaryLink ? `
-              <a class="btn primary" href="${escapeHtml(primaryLink)}"
-                 ${isExternalUrl(primaryLink) ? 'target="_blank" rel="noopener"' : ''}>
-                Abrir link
-              </a>` : ""}
-          </div>
-        </div>
+            <p style="margin-top:12px;">${escapeHtml(p.description || "")}</p>
 
-        <section class="proj-hero">
-          <div>
-            <span class="pilllike">${escapeHtml(p.type || "Projeto")}</span>
-            ${tags.slice(0, 6).map(t => `<span class="pilllike">${escapeHtml(t)}</span>`).join("")}
-          </div>
+            ${links.length ? `
+                <div class="linkscol">
+                ${links.map(l => {
+                    const url = String(l.url || "");
+                    return `
+                    <a class="linkrow" href="${escapeHtml(url)}"
+                        ${isExternalUrl(url) ? 'target="_blank" rel="noopener"' : ''}>
+                        <div class="link-left">
+                        <div class="link-title">${escapeHtml(l.label || "Link")}</div>
+                        <div class="link-sub">${escapeHtml(url)}</div>
+                        </div>
+                        <span class="chip">Acessar</span>
+                    </a>
+                    `;
+                }).join("")}
+                </div>
+            ` : ``}
+            </section>
 
-          <p style="margin-top:12px;">${escapeHtml(p.description || "")}</p>
-
-          ${links.length ? `
-            <div class="linkscol">
-              ${links.map(l => {
-                const url = String(l.url || "");
-                return `
-                  <a class="linkrow" href="${escapeHtml(url)}"
-                     ${isExternalUrl(url) ? 'target="_blank" rel="noopener"' : ''}>
-                    <div class="link-left">
-                      <div class="link-title">${escapeHtml(l.label || "Link")}</div>
-                      <div class="link-sub">${escapeHtml(url)}</div>
-                    </div>
-                    <span class="chip">Acessar</span>
-                  </a>
-                `;
-              }).join("")}
+            <section style="padding-top:18px;">
+            <div class="section-head">
+                <h2>Código (${escapeHtml(codeLang)})</h2>
+                <p class="muted">exibido do projetos.json</p>
             </div>
-          ` : ``}
-        </section>
 
-        <section style="padding-top:18px;">
-          <div class="section-head">
-            <h2>Código (${escapeHtml(codeLang)})</h2>
-            <p class="muted">exibido do projetos.json</p>
-          </div>
+            <div class="card" style="padding:14px;">
+                <pre><code id="codeBlock">Carregando…</code></pre>
+            </div>
+            </section>
+        `;
 
-          <div class="card" style="padding:14px;">
-            <pre><code>${escapeHtml(codeContent)}</code></pre>
-          </div>
-        </section>
-      `;
-    }
+        // Agora busca o código (content OU src) e injeta no codeBlock
+        try {
+            const codeText = await loadCodeText(p.code);
+            const codeEl = document.getElementById("codeBlock");
+            if (codeEl) codeEl.textContent = codeText || "(sem código)";
+        } catch (e) {
+            const codeEl = document.getElementById("codeBlock");
+            if (codeEl) codeEl.textContent = "Erro ao carregar código: " + (e?.message || e);
+            console.error(e);
+        }
+        }
 
     (async function init(){
       try{
@@ -294,7 +322,7 @@
           return;
         }
 
-        renderProject(found);
+        await renderProject(found);
       } catch (err) {
         view.innerHTML = `
           <section class="proj-hero">
