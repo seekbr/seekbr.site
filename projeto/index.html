@@ -105,6 +105,12 @@
 </head>
 
 <body>
+  <script defer>
+  const base = "/projeto/";
+  if (!location.pathname.startsWith(base)) {
+    location.replace(base);
+  }
+  </script>
   <!-- usa a mesma topbar do seu site -->
   <header class="topbar">
     <div class="inner">
