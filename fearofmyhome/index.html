@@ -1,6 +1,25 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+  <!-- Básico -->
+  <meta name="description" content="Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.">
+
+  <!-- Open Graph (Discord usa isso) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fear of my Home">
+  <meta property="og:title" content="Fear of my Home">
+  <meta property="og:description" content="Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.">
+  <meta property="og:url" content="https://seekbr.site/fearofmyhome">
+  <meta property="og:image" content="https://seekbr.site/assets/images/fearofmyhome.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card (muitos apps reaproveitam) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fear of my Home">
+  <meta name="twitter:description" content="Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.">
+  <meta name="twitter:image" content="https://seekbr.site/assets/images/fearofmyhome.png">
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fear of my Home</title>
@@ -402,6 +421,20 @@
     header.hero{
     box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(245,158,11, .05);
     }
+
+    /* ===== Modal (conceitos) ===== */
+    .modal table td,
+    .modal table th{
+    white-space: normal;          /* deixa o texto do bônus quebrar linha */
+    vertical-align: top;
+    }
+
+    .modal .table-note{
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    }
+
   </style>
 </head>
 
@@ -445,29 +478,10 @@
 
 
     <main>
-      <section class="card" id="capitulo-0">
-        <h2><span class="dot"></span>Capítulo 0: Introdução</h2>
+      <!-- Capítulo 1 -->
+      <section class="card" id="capitulo-1">
+        <h2><span class="dot"></span>Capítulo 1: Introdução</h2>
         <hr class="sep" />
-        <p class="historia">
-            Quando tudo começou a ficar silencioso demais,
-            <br>eu achava que era só a casa dormindo.
-            <br>Eu costumava imaginar que as paredes eram ocas,
-            <br>que atrás delas só existia espaço vazio.
-            <br>
-            <br>Se eu ficasse quieto o suficiente,
-            <br>talvez atravessasse tudo aquilo como fumaça.
-            <br>Era confortável pensar assim.
-            <br>Bastava acreditar que nada me segurava de verdade.
-            <br>
-            <br>Mas então eu cresci
-            <br>e aprendi o que existe dentro das paredes.
-            <br>Aprendi por que elas rangem,
-            <br>por que parecem se aproximar quando ninguém olha.
-            <br>
-            <br>Hoje eu não tento mais atravessar.
-            <br>Hoje eu fico parado.
-            <br>E espero que a casa passe por mim.
-        </p>
 
         <h3>O Lar</h3>
         Ninguém sabe quando <strong>O Lar</strong> começou. Talvez ele sempre tenha existido.
@@ -477,17 +491,35 @@
         O que vive no guarda-roupa não saiu de um sonho. O que se esconde debaixo da cama não vai embora com a luz acesa. 
         E aquilo que sorri demais aprendeu a imitar rostos humanos.
         <strong>Fuja</strong>.
+
+        <h3>Como Jogar</h3>
+        <em>Fear of my Home</em> é um jogo narrativo de horror infantil. 
+        Os jogadores interpretam crianças enfrentando o medo, a perda e o desconhecido. 
+        Não sobre como eles <strong>enfrentam</strong> os monstros e criaturas, mas como eles <stong>sobrevivem</stong> a eles. 
+        As regras existem para apoiar a história e a experiência na mesa. 
+        Se, em algum momento, adaptar ou simplificar uma regra tornar o jogo mais fluido ou mais divertido para todos, isso deve ser feito em comum acordo.
+
+        <h3>Papel do Jogador</h3>
+        O jogador é responsável por interpretar seu personagem e expressar suas intenções, emoções e decisões. 
+        Durante as rolagens, o jogador descreve como seu personagem age, quais dificuldades enfrenta e de que forma o resultado influencia a ação. 
+        O jogador pode narrar o resultado de suas próprias ações, mas não deve determinar como elas afetam o mundo, os outros personagens ou a história como um todo.
+
+        <h3>Papel do Mestre</h3>
+        O mestre é responsável por apresentar o mundo do jogo, narrar os ambientes e interpretar os personagens que não pertencem aos jogadores. 
+        Cabe ao mestre definir as consequências das ações dos personagens, mediar regras e manter o tom da história. 
+        Embora tenha a palavra final sobre decisões e conflitos, o mestre deve usar essa autoridade para manter o jogo justo, envolvente e seguro, nunca para punir ou excluir jogadores.
       </section>
-      <!-- Capítulo 1 -->
-      <section class="card" id="capitulo-1">
-        <h2><span class="dot"></span>Capítulo 1: Criação de Personagem</h2>
+
+      <!-- Capítulo 2 -->
+      <section class="card" id="capitulo-2">
+        <h2><span class="dot"></span>Capítulo 2: Criação de Personagem</h2>
         <hr class="sep" />
 
         <h3>Atributos</h3>
         <p>
           Os personagens de <em>Fear of my Home</em> possuem 3 atributos: <strong>Físico (FIS)</strong>, <strong>Mente (MNT)</strong> e <strong>Instinto (INS)</strong>.
           Durante a criação do seu personagem, você deve escolher um atributo para receber <strong>1</strong> ponto, um para receber <strong>2</strong> e o último para receber <strong>3</strong>.
-          Após isso, você pode adicionar <strong>+1</strong> ponto a qualquer atributo.
+          Após isso, você pode adicionar mais <strong>1</strong> ponto a <strong>qualquer</strong> atributo.
         </p>
 
         <blockquote>
@@ -498,40 +530,23 @@
         <h3>Perícias</h3>
         <p>
           Enquanto os atributos indicam <strong>potencial bruto</strong>, as perícias mostram onde o personagem sabe <strong>agir com precisão</strong>. 
-          Todas as perícias começam com valor <strong>1</strong> e durante a criação, você pode distribuir <strong>6 pontos</strong> adicionais entre elas. 
-          No máximo <strong>duas perícias</strong> podem ter <strong>3 pontos</strong>, e <strong>nenhuma</strong> pode ter <strong>4 ou mais</strong>.
+          Todas as perícias começam com valor <strong>0</strong> e durante a criação, você pode distribuir <strong>6 pontos</strong> adicionais entre elas. 
+          No máximo <strong>duas perícias</strong> podem ter <strong>2 pontos</strong>, e <strong>nenhuma</strong> pode ter <strong>3 ou mais</strong>.
         </p>
 
         <button class="btn-pill" id="openSkills" type="button">
             Lista de Perícias
         </button>
 
-
         <h3>Conceitos</h3>
         <p>
-          Os conceitos são frases curtas que descrevem algo marcante no personagem:
-          uma característica física, um pertence, um hábito, uma fama, um trauma ou uma condição social.
-          Durante a criação, você deve criar 4 conceitos, cada um deve ter um sentido positivo e negativo.
+          Os conceitos são habilidades que representam a personalidade, medos, crenças ou a reputação de um personagem. 
+          Eles ajudam a definir quem a criança é, não apenas o que ela sabe fazer. Durante a criação do personagem, você escolhe 4 conceitos.
         </p>
 
-        <blockquote>
-          Augusto usa óculos desde criança, ele se sente mais atento e confiante quando está analisando algo com calma. 
-          Fernando também usa óculos, mas, na escola, isso virou motivo de zombaria constante. 
-          Enquanto Augusto recebeu um bônus de <strong>+1 em Saber</strong>, Fernando recebeu <strong>-1 em Conectar</strong> mesmo ambos escolhendo o conceito "Óculos".
-        </blockquote>
-
-        <div class="callout">
-          <div class="icon">!</div>
-          <p>
-            Conceitos nunca concedem bônus automáticos. Eles só entram em jogo quando fizerem sentido narrativo e sempre a critério do mestre podendo oferecer um dado segurado a mais ou a menos.
-          </p>
-        </div>
-      </section>
-
-      <!-- Capítulo 2 -->
-      <section class="card" id="capitulo-2">
-        <h2><span class="dot"></span>Capítulo 2: Características</h2>
-        <hr class="sep" />
+        <button class="btn-pill" id="openConcepts" type="button">
+            Lista de Conceitos
+        </button>
 
         <h3>Pontos de Vida</h3>
         <p>
@@ -541,20 +556,14 @@
 
         <h3>Pontos de Sanidade</h3>
         <p>
-          Enquanto os pontos de vida representam uma medida do vigor físico, os </strong>Pontos de Sanidade (PS)</strong> representam a saúde e resiliência mental. 
+          Enquanto os pontos de vida representam uma medida do vigor físico, os <strong>Pontos de Sanidade (PS)</strong> representam a saúde e resiliência mental. 
           Seu personagem começa com 4 pontos de sanidade somado com seus pontos de <strong>Mente</strong> e <strong>Instinto</strong>.
-        </p>
-
-        <h3>Pontos de Imaginação</h3>
-        <p>
-          Os <strong>Pontos de Imaginação (PI)</strong> medem a criatividade e crença em monstros, fadas do dente e gnomos escondidos dentro dos interruptores. 
-          Seu personagem começa com 10 pontos de imaginação..
         </p>
       </section>
 
       <!-- Capítulo 3 -->
       <section class="card" id="capitulo-3">
-        <h2><span class="dot"></span>Capítulo 3: Testes</h2>
+        <h2><span class="dot"></span>Capítulo 3: Testes e Rolagens</h2>
         <hr class="sep" />
 
         <h3>Testes</h3>
@@ -566,55 +575,18 @@
 
         <h3>Rolagens</h3>
         <p>
-          A rolagem utiliza dados de 6 faces (<strong>d6</strong>) e sempre é associada a um atributo e a uma perícia. 
-          Role uma quantidade de d6 iguais a soma do <strong>atributo</strong> e da <strong>perícia</strong>. 
-          Após rolar, segure uma quantidade de dados igual á <strong>perícia</strong> e some seus valores. 
-          Depois, a soma é comparada com a <strong>Dificuldade do Teste (DT)</strong>.
+          A rolagem utiliza dados de 4 faces (<strong>d4</strong>) e sempre é associada a um atributo e a uma perícia. 
+          Role uma quantidade de d4 iguais ao <strong>atributo</strong>. 
+          Cada valor 1 e 2 representa uma condição ruim na ação, enquanto cada valor 3-4 representa uma condição boa na ação. 
+          Pra cada ponto da <strong>perícia</strong> você pode ignorar um resultado dos dados.
+          O jogador descreve a ação com base nas condições obtidas interpretando como os resultados bons e ruins vão afetar.
         </p>
 
         <blockquote>
-          Luca está fugindo do Cabeça de Abóbora. No meio do caminho havia uma casca de banana.
-          O mestre pede um teste <strong>Desviar</strong> (Físico com Reflexos).
-          Luca possui <strong>Físico 3</strong> e <strong>Reflexos 2</strong>, por isso rola <strong>5d6</strong> e tirou <strong>6, 2, 3, 1, 1</strong> porém segura apenas
-          <strong>2 dados</strong> ficando com o <strong>6</strong> e o <strong>3</strong> resultando em <strong>9</strong>.
+          Luca está se escondendo de uma criatura. O mestre pede um teste de <strong>Esconder</strong> (Enganar com Físico).
+          Luca possui <strong>Físico 3</strong> e <strong>Reflexos 1</strong>, por isso rola <strong>3d4</strong> e tirou <strong>2, 4, 1</strong>.
+          Ele escolhe ignorar o <strong>1</strong> ficando com <strong>um sucesso</strong> e <strong>uma falha</strong>. Luca se escondeu mas se arranhou, perdendo 1 PV.
         </blockquote>
-
-        <h3>Problemas</h3>
-        <p>
-          Problemas são testes contra uma DT pré-determinada. Ou seja: quando o mestre pede o teste, a DT já está definida.
-          Por padrão, você pode usar a tabela abaixo para escolher a DT:
-        </p>
-
-        <table aria-label="Tabela de Dificuldades">
-          <thead>
-            <tr>
-              <th>Dificuldade</th>
-              <th>Trivial</th>
-              <th>Fácil</th>
-              <th>Médio</th>
-              <th>Difícil</th>
-              <th>Muito Difícil</th>
-              <th>Quase Impossível</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Valor da DT</strong></td>
-              <td>6</td>
-              <td>9</td>
-              <td>12</td>
-              <td>15</td>
-              <td>18</td>
-              <td>21</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>Conflitos</h3>
-        <p>
-          Conflitos são testes onde a DT é a rolagem do oponente. Quando dois personagens se enfrentam através de um teste,
-          <strong>o maior resultado vence</strong>.
-        </p>
       </section>
     </main>
   </div>
@@ -626,9 +598,6 @@
         <button class="modal-close" id="closeSkills" type="button" aria-label="Fechar">✕</button>
       </div>
 
-      <p class="muted">
-        Perícias e Especializações.
-      </p>
       <table aria-label="Tabela de Perícias">
         <thead>
           <tr>
@@ -646,6 +615,12 @@
             <td>Bloqueiar</td>
           </tr>
           <tr>
+            <td><strong>Calcular</strong></td>
+            <td>Equilibrar</td>
+            <td>Planejar</td>
+            <td>Desviar</td>
+          </tr>
+          <tr>
             <td><strong>Cuidar</strong></td>
             <td>Salvar</td>
             <td>Medicar</td>
@@ -658,22 +633,10 @@
             <td>Omitir</td>
           </tr>
           <tr>
-            <td><strong>Equilibrar</strong></td>
-            <td>Escalar</td>
-            <td>Calcular</td>
-            <td>Fluir</td>
-          </tr>
-          <tr>
-            <td><strong>Esquivar</strong></td>
-            <td>Desviar</td>
-            <td>Prever</td>
-            <td>Pressentir</td>
-          </tr>
-          <tr>
             <td><strong>Falar</strong></td>
             <td>Intimidar</td>
             <td>Convencer</td>
-            <td>Conectar</td>
+            <td>Consolar</td>
           </tr>
           <tr>
             <td><strong>Pensar</strong></td>
@@ -693,16 +656,61 @@
             <td>Persistir</td>
             <td>Enfrentar</td>
           </tr>
-          <tr>
-            <td><strong>Sentir</strong></td>
-            <td>Rastrear</td>
-            <td>Interpretar</td>
-            <td>Temer</td>
-          </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <!-- Modal: Lista de conceitos -->
+    <div class="modal-backdrop" id="conceptsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="conceptsTitle">
+        <div class="modal-header">
+        <h3 class="modal-title" id="conceptsTitle">Lista de Conceitos</h3>
+        <button class="modal-close" id="closeConcepts" type="button" aria-label="Fechar">✕</button>
+        </div>
+
+        <table aria-label="Tabela de Conceitos">
+        <thead>
+            <tr>
+            <th>Nome</th>
+            <th>Bônus/Habilidades</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Bater primeiro perguntar depois</strong></td><td>Seu primeiro ataque da cena recebe 2 dados segurados a mais.</td></tr>
+            <tr><td><strong>Brinco de faz-de-contas</strong></td><td>Quando for rolar um teste, gaste 1 PI pra receber +2 nesse teste.</td></tr>
+            <tr><td><strong>Corre que dá</strong></td><td>Em cenas de perseguição, você recebe um dado a mais.</td></tr>
+            <tr><td><strong>É mais fácil se esconder</strong></td><td>Você não sofre penalidades em testes de Esconder por barulho ou movimento.</td></tr>
+            <tr><td><strong>É só um pesadelo</strong></td><td>Quando sofrer um dano de PS, você pode gastar 1 PI para reduzir pela metade.</td></tr>
+            <tr><td><strong>Ele é meu melhor amigo</strong></td><td>Sempre que estiver com seu melhor amigo, você recebe +1 de PS atual.</td></tr>
+            <tr><td><strong>Eu brincava de bonecas</strong></td><td>Ao curar um aliado, aumenta 2 dessa cura.</td></tr>
+            <tr><td><strong>Eu não quero morrer</strong></td><td>Uma única vez, ao receber um dano que deixaria com 0 PV, ao invés disso você fica com 1 PV.</td></tr>
+            <tr><td><strong>Eu não vejo, eles não me veem</strong></td><td>Você recebe +3 em testes de Esconder mas fica cego até o fim do próximo turno.</td></tr>
+            <tr><td><strong>Eu sou o mais forte</strong></td><td>Sempre que fizer um ataque corpo a corpo, você rola 1 dado a mais.</td></tr>
+            <tr><td><strong>Fingir de morto</strong></td><td>Faça um teste de Mentir contra um alvo, se passar ele acredita que você tá dormindo ou morto.</td></tr>
+            <tr><td><strong>Foi ele que começou</strong></td><td>Se alguém que você não feriu nesta cena te atacar, você pode realizar um ataque contra ele.</td></tr>
+            <tr><td><strong>Hiperfoco e hiperativo</strong></td><td>No primeiro teste de uma cena de Perseguição, você automaticamente tira o valor máximo.</td></tr>
+            <tr><td><strong>Já sou muito velho pra ter medo</strong></td><td>Uma vez por sessão, você pode anular um dano de PS.</td></tr>
+            <tr><td><strong>Juro que não chorei</strong></td><td>Sempre que terminar uma cena com PS acima de 0, você recupera 1 PS.</td></tr>
+            <tr><td><strong>Meu olho direito enxerga melhor</strong></td><td>Na primeira vez que usar Perceber na cena, role 1d4, se tirar par, você recebe +4.</td></tr>
+            <tr><td><strong>Minha mãe disse que sou bonito</strong></td><td>Em testes de Convencer, você recebe mais dois dados segurados.</td></tr>
+            <tr><td><strong>Não me chama de criança</strong></td><td>Você recebe +3 em testes de Falar ou Enganar contra pessoas mais velhas que você.</td></tr>
+            <tr><td><strong>Não sou teimoso</strong></td><td>Ignora o dano por forçar testes de Equilibrar ou Resistir.</td></tr>
+            <tr><td><strong>Não tenho mais medo de escuro</strong></td><td>Você não sofre penalidade por agir em ambientes totalmente escuros.</td></tr>
+            <tr><td><strong>Nariz de palhaço</strong></td><td>Uma vez por cena, um teste de Consolar recupera PS de todos os aliados adjacentes.</td></tr>
+            <tr><td><strong>Odeio valentões</strong></td><td>Quando um aliado receber um ataque, você pode realizar um ataque contra quem atacou.</td></tr>
+            <tr><td><strong>Se eu acreditar forte o bastante</strong></td><td>Antes de um teste, você pode gastar 2 PI e o dado mais baixo é considerado um 6 nesse teste.</td></tr>
+            <tr><td><strong>Se eu fechar os olhos, passa</strong></td><td>Você recupera 1 de PS atual, mas fica cego até o fim do seu próximo turno.</td></tr>
+            <tr><td><strong>Se for pra atrapalhar nem ajuda</strong></td><td>Sempre que for ajudado a realizar um teste, uma ajuda fornece o dobro do bônus.</td></tr>
+            <tr><td><strong>Sei que sou capaz</strong></td><td>Se você possui mais dados segurados do que rolados, você rola 1 dado a mais.</td></tr>
+            <tr><td><strong>Sempre gostei de aventuras</strong></td><td>Ao realizar testes para escalar, saltar ou nadar você segura 1 dado a mais.</td></tr>
+            <tr><td><strong>Só porque vocês estão olhando</strong></td><td>Se não tiver nenhum aliado em alcance curto, você recebe +1 em todos os testes.</td></tr>
+            <tr><td><strong>Sou o maior da minha turma</strong></td><td>Adiciona +2 de PV máximo.</td></tr>
+            <tr><td><strong>Vi isso num desenho</strong></td><td>Ao rolar um teste com a perícia e o atributo 1, você segura um dado a mais.</td></tr>
+            <tr><td><strong>Você não manda em mim</strong></td><td>Uma vez por cena, ignore uma ordem, intimidação ou efeito de controle.</td></tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
   <script>
   const openBtn = document.getElementById("openSkills");
   const modal = document.getElementById("skillsModal");
@@ -736,6 +744,39 @@
       closeModal();
     }
   });
+  // ===== Modal: Conceitos =====
+const openConceptsBtn = document.getElementById("openConcepts");
+const conceptsModal = document.getElementById("conceptsModal");
+const closeConceptsBtn = document.getElementById("closeConcepts");
+
+function openConcepts() {
+  conceptsModal.classList.add("is-open");
+  conceptsModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  closeConceptsBtn.focus();
+}
+
+function closeConcepts() {
+  conceptsModal.classList.remove("is-open");
+  conceptsModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  openConceptsBtn.focus();
+}
+
+openConceptsBtn?.addEventListener("click", openConcepts);
+closeConceptsBtn?.addEventListener("click", closeConcepts);
+
+// clicar fora fecha
+conceptsModal?.addEventListener("click", (e) => {
+  if (e.target === conceptsModal) closeConcepts();
+});
+
+// ESC fecha (sem brigar com o outro modal)
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && conceptsModal.classList.contains("is-open")) {
+    closeConcepts();
+  }
+});
 </script>
 </body>
 </html>
