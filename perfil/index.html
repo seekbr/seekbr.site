@@ -38,7 +38,6 @@
               <!-- Em vez de "pill" (que não existe no seu CSS), usamos chip -->
               <span class="chip">Brasil</span>
               <span class="chip">Minas Gerais</span>
-              <span class="chip">Belo Horizonte</span>
             </div>
           </div>
 
@@ -63,14 +62,6 @@
               <span class="chip">Acessar</span>
             </a>
 
-            <a class="linkrow" href="https://www.youtube.com/@oseekbr" target="_blank" rel="noopener">
-              <div class="link-left">
-                <div class="link-title">YouTube</div>
-                <div class="link-sub">@oseekbr</div>
-              </div>
-              <span class="chip">Acessar</span>
-            </a>
-
             <a class="linkrow" href="https://discord.com/users/1146906311582294127" target="_blank" rel="noopener">
               <div class="link-left">
                 <div class="link-title">Discord</div>
@@ -84,76 +75,16 @@
         <div class="mini">
           <h3>Projetos</h3>
           <div class="about">
-            <ul class="list-clean">
-              <li>Locternum</li>
-              <li>YouTube</li>
-            </ul>
-            <p class="muted" style="margin:10px 0 0;">
-              Estou constantemente ativo no meu servidor do Discord.
+            <p>
+              Olá, eu sou o Seek, também conhecido como SeekBR.<span class="br"></span>
+              Sou apaixonado por programação e criação de jogos, e atualmente estudo Desenvolvimento de Sistemas na UFMG.<span class="br"></span>
+              Trabalho principalmente com Python e JavaScript, e este site funciona como meu portfólio pessoal.
             </p>
           </div>
         </div>
       </div>
     </section>
-
-    <footer>
-      <div class="footer-inner">
-        <div>© SeekBR <span id="year"></span></div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="/contato/">Contato</a>
-          <a href="/perfil/">Perfil</a>
-        </div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
   </main>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const statusDot = document.getElementById("statusDot");
-    const statusText = document.getElementById("statusText");
-
-    function getBrazilNowParts() {
-      const parts = new Intl.DateTimeFormat("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        weekday: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      }).formatToParts(new Date());
-
-      const map = {};
-      for (const p of parts) map[p.type] = p.value;
-
-      return {
-        weekday: (map.weekday || "").toLowerCase(),
-        hour: Number(map.hour),
-        minute: Number(map.minute)
-      };
-    }
-
-    function isBusinessOpen({ weekday, hour, minute }) {
-      const isWeekend = weekday.startsWith("sáb") || weekday.startsWith("sab") || weekday.startsWith("dom");
-      if (isWeekend) return false;
-
-      const nowMinutes = hour * 60 + minute;
-      const start = 12 * 60 + 30;
-      const end = 22 * 60;
-
-      return nowMinutes >= start && nowMinutes < end;
-    }
-
-    function updateProfileStatus() {
-      const now = getBrazilNowParts();
-      const online = isBusinessOpen(now);
-
-      statusDot.classList.toggle("online", online);
-      statusDot.classList.toggle("offline", !online);
-      statusText.textContent = online ? "Online" : "Offline";
-    }
-
-    updateProfileStatus();
-    setInterval(updateProfileStatus, 30_000);
-  </script>
 </body>
 </html>

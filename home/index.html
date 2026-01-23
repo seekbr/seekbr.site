@@ -13,24 +13,37 @@
   <main id="top" class="container">
     <section class="hero anchor">
       <div class="hero-grid">
-        <div class="card hero-main">
-          <span class="kicker">🧩 Portfólio / Homepage</span>
-          <h1>Eu crio projetos e deixo eles bonitos de mostrar.</h1>
-          <p class="lead">
-            Aqui você pode colocar uma descrição curta sobre você, o que você faz, e o tipo de coisa que você curte construir
-            (bots, sites, jogos, design, etc). A ideia é ser direto e deixar os projetos falarem por você.
-          </p>
+        <div class="card profile-card">
+            <div class="banner"></div>
 
-          <div class="cta-row">
-            <a class="btn primary" href="#projetos">Ver projetos</a>
-            <a class="btn" href="#contato">Falar comigo</a>
-          </div>
+            <div class="profile-head">
+                <img class="avatar profile-avatar" src="/assets/images/seekbr.jpg" alt="SeekBR" />
+
+                <div class="head-row">
+                <div class="who">
+                    <h1 class="name">
+                    <span id="statusDot" class="dot offline" aria-hidden="true"></span>
+                    <span id="statusText" class="muted" style="display:none;">Offline</span>
+                    SeekBR
+                    <span class="tag">@seekbr</span>
+                    </h1>
+                    <p class="bio">
+                    Criador de conteúdo e desenvolvedor independente.<br>
+                    Estudante de Desenvolvimento de Sistemas na UFMG.
+                    </p>
+                    <div style="margin-top: 16px;">
+                    <span class="chip">Brasil</span>
+                    <span class="chip">Minas Gerais</span>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
 
         <aside class="card hero-side">
           <div class="mini">
             <h3>⚡ Destaque</h3>
-            <p>Coloque aqui um projeto principal, um objetivo, ou uma frase que te represente.</p>
+            <p><a href="/fearofmyhome/"><em>Fear of my Home</em></a>. Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.</p>
           </div>
 
           <div class="mini">
@@ -39,8 +52,6 @@
               <span class="chip">HTML/CSS</span>
               <span class="chip">JavaScript</span>
               <span class="chip">Python</span>
-              <span class="chip">Discord Bot</span>
-              <span class="chip">Godot</span>
             </div>
           </div>
 
@@ -63,42 +74,27 @@
       </div>
 
       <div class="grid">
-        <!-- CARD 1 -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Fear of my Home</h3>
+            <span class="badge">RPG de Mesa</span>
+          </div>
+          <p>
+            Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.
+          </p>
+          <a class="more" href="/fearofmyhome">Abrir ↗</a>
+        </article>
+
         <article class="project">
           <div class="project-top">
             <h3>Locternum</h3>
             <span class="badge">Videogame</span>
           </div>
           <p>
-            Você acorda em lugar estranho, ao redor tudo está contra a sua sobrevivência. Fuja.
+            Em breve...
           </p>
           <a class="more" href="#" onclick="return false;">Abrir ↗</a>
         </article>
-
-        <!-- CARD 2 -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Fear of my Home</h3>
-            <span class="badge">RPG</span>
-          </div>
-          <p>
-            Apague seus medos, não tema a morte, tema o que pode vir antes dela. Fuja.
-          </p>
-          <a class="more" href="/fearofmyhome">Abrir ↗</a>
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Backstage</h3>
-            <span class="badge">Discord</span>
-          </div>
-          <p>
-            Entenda o processo de criação do universo do Locternum.
-          </p>
-          <a class="more" href="#" onclick="return false;">Abrir ↗</a>
-        </article>
-
       </div>
     </section>
 
@@ -106,45 +102,22 @@
       <div class="section-head">
         <div>
           <h2>Sobre</h2>
-          <p>Um resumo rápido: quem você é e o que você faz.</p>
         </div>
       </div>
 
       <div class="card" style="padding: 18px;">
         <p style="margin:0; color: var(--muted); line-height: 1.6;">
-          Escreva aqui uma bio curta. Você pode falar do seu foco (ex: programação, bots, jogos),
-          o que você quer aprender, e o tipo de projeto que você curte construir.
+          Olá, eu sou o <strong>Seek</strong>, também conhecido como <strong>SeekBR</strong>.<br>
+          Sou apaixonado por programação e criação de jogos, e atualmente estudo Desenvolvimento de Sistemas na <strong>UFMG</strong>.<br>
+          Trabalho principalmente com <strong>Python</strong> e <strong>JavaScript</strong>, e este site funciona como meu portfólio pessoal.<br><br>
+          Desde criança, sempre gostei de criar histórias, desenhar e fazer joguinhos simples no Scratch.<br>
+          Com o tempo, isso evoluiu para inúmeros projetos envolvendo jogos, RPGs de mesa, músicas e programas.<br><br>
+          E aqui é a minha <strong>vitrine de projetos</strong>!
         </p>
       </div>
     </section>
 
-    <section id="contato" class="anchor">
-      <div class="section-head">
-        <div>
-          <h2>Contato</h2>
-          <p>Deixe um jeito fácil de falar com você.</p>
-        </div>
-      </div>
-
-      <div class="card" style="padding: 18px;">
-        <p style="margin:0 0 10px; color: var(--muted);">
-          Pode ser email, Discord, Instagram, o que você quiser.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn" href="mailto:seuemail@exemplo.com">📩 Email</a>
-          <!-- Coloque seu ID real do Discord aqui -->
-          <a class="btn" href="https://discord.com/users/SEU_ID" target="_blank" rel="noopener">💬 Discord</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">🐙 GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-inner">
-        <span>© <span id="year"></span> SeekBR</span>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
   </main>
 
   <script>

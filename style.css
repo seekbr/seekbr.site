@@ -42,7 +42,7 @@ background:
 a{ color: inherit; text-decoration: none; }
 .container{
     width: min(var(--max), 100%);
-    margin: 0 auto;
+    margin: 32px auto;
     padding: 0 var(--pad);
 }
 
@@ -85,6 +85,7 @@ a{ color: inherit; text-decoration: none; }
     width: 10px; height: 10px; border-radius: 50%;
     background: rgba(255,255,255,.9);
     box-shadow: 0 0 24px rgba(99,102,241,.6);
+    flex: 0 0 auto;
 }
 nav{
     display: flex;
@@ -105,7 +106,7 @@ nav a:hover{
 
 /* Hero */
 .hero{
-    padding: 56px 0 26px;
+    padding: 0 0 26px;
 }
 .hero-grid{
     display: grid;
@@ -218,8 +219,12 @@ h1{
 .mini p{
     margin: 0;
     color: var(--muted);
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 15px;
+    line-height: 1.4;
+}
+.br{
+  display: block;
+  margin-top: .65em;
 }
 .chiprow{
     display:flex;
@@ -347,9 +352,6 @@ footer{
     padding-top: 16px;
 }
 
-/* Smooth anchor offset for sticky header */
-.anchor{ scroll-margin-top: 80px; }
-
 /* ================================
    Discord-like profile (addon)
    Cole no final do style.css
@@ -376,8 +378,8 @@ footer{
 
 /* card do perfil */
 .profile-card{
+  padding: 0;
   overflow: hidden;
-  margin-top: 18px;
 }
 
 /* banner/capa */
@@ -421,6 +423,9 @@ footer{
 
 /* textos */
 .name{
+  display: flex;
+  gap: 8px;
+  align-items: center;
   margin: 0;
   font-size: 22px; /* não usar o h1 global gigante da home */
   line-height: 1.15;
@@ -430,8 +435,8 @@ footer{
   color: var(--muted);
   font-size: 14px;
   font-weight: 500;
-  margin-left: 8px;
 }
+
 .bio{
   margin: 10px 0 0;
   color: var(--muted);

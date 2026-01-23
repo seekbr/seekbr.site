@@ -145,7 +145,7 @@
       flex: 0 0 auto;
     }
     h3{
-      margin-top: 16px;
+      margin-top: 24px;
       font-size: 22px;
       color: rgba(255,255,255,.92);
       text-align: center;
@@ -303,6 +303,38 @@
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 18px;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(167,139,250,.55) rgba(0,0,0,.15); /* thumb / track */
+    }
+
+    #conceptsModal .modal{
+    width: min(1200px, 95vw);   /* mais largo */
+    max-height: min(85vh, 720px);
+    }
+
+
+    #conceptsModal table td:first-child,
+    #conceptsModal table th:first-child{
+    white-space: nowrap;      /* NÃO quebra linha */
+    }
+
+    .modal::-webkit-scrollbar{
+    width: 10px;
+    }
+
+    .modal::-webkit-scrollbar-track{
+    background: rgba(0,0,0,.15);
+    border-radius: 999px;
+    }
+
+    .modal::-webkit-scrollbar-thumb{
+    background: rgba(167,139,250,.55);
+    border-radius: 999px;
+    border: 2px solid rgba(0,0,0,.15); /* dá “respiro” */
+    }
+
+    .modal::-webkit-scrollbar-thumb:hover{
+    background: rgba(167,139,250,.75);
     }
 
     .modal-header{
@@ -348,9 +380,11 @@
     padding: 8px 12px;
     border-radius: 999px;
     font-size: 14px;
-    display: inline-flex;
+    display: flex;
+    width: fit-content;
+    margin: 12px auto 0;
+    justify-content: center;
     gap: 8px;
-    align-items: center;
     cursor: pointer;
     }
 
@@ -540,7 +574,7 @@
 
         <h3>Conceitos</h3>
         <p>
-          Os conceitos são habilidades que representam a personalidade, medos, crenças ou a reputação de um personagem. 
+          Os conceitos são habilidades que representam a personalidade, crenças ou a reputação de um personagem. 
           Eles ajudam a definir quem a criança é, não apenas o que ela sabe fazer. Durante a criação do personagem, você escolhe 4 conceitos.
         </p>
 
