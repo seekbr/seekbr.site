@@ -1,14 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+    <script>
+    const repo = "seekbr.site";
+    const isGh = location.hostname.endsWith("github.io");
+    const base = isGh ? `/${repo}/` : "/";
+    document.write(`<base href="${base}">`);
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SeekBR — Home</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="site-header"></div>
-  <script src="/script.js" defer></script>
+  <script src="script.js" defer></script>
 
   <main id="top" class="container">
     <section class="hero anchor">
@@ -17,7 +23,7 @@
             <div class="banner"></div>
 
             <div class="profile-head">
-                <img class="avatar profile-avatar" src="/assets/images/seekbr.jpg" alt="SeekBR" />
+                <img class="avatar profile-avatar" src="assets/images/seekbr.jpg" alt="SeekBR" />
 
                 <div class="head-row">
                 <div class="who">
@@ -43,7 +49,7 @@
         <aside class="card hero-side">
           <div class="mini">
             <h3>⚡ Destaque</h3>
-            <p><a href="/fearofmyhome/"><em>Fear of my Home</em></a>. Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.</p>
+            <p><a href="fearofmyhome/"><em>Fear of my Home</em></a>. Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.</p>
           </div>
 
           <div class="mini">
@@ -82,7 +88,7 @@
           <p>
             Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.
           </p>
-          <a class="more" href="/fearofmyhome">Abrir ↗</a>
+          <a class="more" href="fearofmyhome">Abrir ↗</a>
         </article>
 
         <article class="project">

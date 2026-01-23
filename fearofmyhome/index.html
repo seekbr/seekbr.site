@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+  <script>
+  const repo = "seekbr.site";
+  const isGh = location.hostname.endsWith("github.io");
+  const base = isGh ? `/${repo}/` : "/";
+  document.write(`<base href="${base}">`);
+  </script>
   <!-- Básico -->
   <meta name="description" content="Um sistema sobre medo, angústia e sobrevivência em O Lar. Fuja.">
 
@@ -505,7 +511,7 @@
 
     <section class="banner" aria-label="Fear of my Home">
     <img
-        src="/assets/images/fearofmyhome.png"
+        src="assets/images/fearofmyhome.png"
         loading="lazy"
     />
     </section>
