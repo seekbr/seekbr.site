@@ -6,8 +6,8 @@
 :root{
   /* Base (style 1) */
   --bg: #0b0f17;
-  --panel: rgba(15,17,21,.86);
-  --panel-strong: rgba(15,17,21,.92);
+  --panel: rgba(15,17,21,.92);
+  --panel-strong: rgba(15,17,21,1);
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.65);
   --border: rgba(255,255,255,.12);
@@ -784,7 +784,7 @@ body.modal-open{ overflow: hidden; }
 .profile-avatar{
   width: 92px;
   height: 92px;
-  border: 6px solid rgba(11,15,23,.85);
+  border: 6px solid var(--panel-strong);
   position: absolute;
   top: calc(var(--banner-h) - 46px);
   left: 22px;
