@@ -106,35 +106,19 @@
 
 <body>
   <!-- usa a mesma topbar do seu site -->
-  <header class="topbar">
-    <div class="inner">
-      <div class="brand">
-        <img class="avatar" src="/assets/images/seekbr.jpg" alt="SeekBR">
-        <span>SeekBR</span>
-      </div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/perfil/">Perfil</a>
-        
-        <a href="/contato/">Contato</a>
-        <a href="/projeto/" aria-current="page">Projetos</a>
-      </nav>
-    </div>
-  </header>
+  <div id="site-header"></div>
+  <script src="/script.js" defer></script>
 
   <main class="container project-page">
     <!-- área que vira vitrine OU detalhe -->
     <div id="view"></div>
 
-    <footer>
-      <div class="footer-inner">
-        <div>© SeekBR <span id="year"></span></div>
-      </div>
-    </footer>
+    <div id="site-footer"></div>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     const view = document.getElementById("view");
 
@@ -192,22 +176,18 @@
       view.innerHTML = `
         <section class="proj-hero">
           <h1>Vitrine de Projetos</h1>
-          <p>Abra um projeto para ver descrição, links e um trecho de código. Para adicionar novo projeto, basta editar <strong>data/projetos.json</strong>.</p>
-          <div>
-            <span class="pilllike">URL dinâmica</span>
-            <span class="pilllike">/projeto/{slug}</span>
-          </div>
+          <p>Veja os projetos de programação.</p>
         </section>
 
         <section class="anchor" style="padding-top:18px;">
           <div class="section-head">
             <h2>Todos os projetos</h2>
-            <p>${projects.length} item(ns)</p>
+            <p>${projects.length} itens</p>
           </div>
 
           <div class="grid">
             ${projects.map(p => `
-              <article class="project">
+              <article class="card project">
                 <div class="project-top">
                   <h3>${escapeHtml(p.title)}</h3>
                   <span class="badge">${escapeHtml(p.type || "Projeto")}</span>
