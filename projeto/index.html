@@ -105,12 +105,6 @@
 </head>
 
 <body>
-  <script defer>
-  const base = "/projeto/";
-  if (!location.pathname.startsWith(base)) {
-    location.replace(base);
-  }
-  </script>
   <!-- usa a mesma topbar do seu site -->
   <header class="topbar">
     <div class="inner">
@@ -158,16 +152,16 @@
     }
 
     function getSlugFromPath() {
-      // funciona com: /projeto/slug, /projeto/slug/, /projeto/slug?x=1, /projeto/slug/#a
-      const base = "/projeto/";
-      const url = new URL(window.location.href);
-      const path = url.pathname;
+    const base = "/projeto/";
+    const url = new URL(window.location.href);
 
-      if (!path.startsWith(base)) return "";
-      const rest = path.slice(base.length);
+    // Se veio do 404 fallback: /projeto/?p=/projeto/slug
+    const p = url.searchParams.get("p");
+    const path = p ? p : url.pathname;
 
-      // pega só o primeiro segmento depois de /projeto/
-      return rest.split("/").filter(Boolean)[0] || "";
+    if (!path.startsWith(base)) return "";
+    const rest = path.slice(base.length);
+    return rest.split("/").filter(Boolean)[0] || "";
     }
 
     async function loadCodeText(codeObj) {

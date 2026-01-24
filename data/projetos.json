@@ -6,6 +6,6 @@
     "description": "Baixe vídeos do YouTube em MP3 ou MP4.",
     "tags": [],
     "links": [],
-    "code": { "language": "python", "src": "/data/codes/youtube_downloader.py" }
+    "code": { "language": "python", "src": "/data/codes/youtube_downloader.py"}
   }
 ]
