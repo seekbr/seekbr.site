@@ -7,5 +7,14 @@
     "tags": [],
     "links": [],
     "code": { "language": "python", "src": "/data/codes/youtube_downloader.py"}
+  },
+  {
+    "slug": "gerador-de-senhas",
+    "title": "Gerador de Senhas",
+    "type": "Python",
+    "description": "Gere senhas automaticamente pra cada site através de uma senha base.",
+    "tags": [],
+    "links": [],
+    "code": { "language": "python", "src": "/data/codes/gerador_de_senhas.py"}
   }
 ]
