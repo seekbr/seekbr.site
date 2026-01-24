@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <script>
-    if (/^\/projeto\/.+/.test(location.pathname)) {
+      if (location.pathname.startsWith("/projeto/")) {
         location.replace("/projeto/");
-    }
+      }
     </script>
   </head>
   <body></body>
