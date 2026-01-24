@@ -1,16 +1,10 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <script>
-  const repo = "seekbr.site";
-  const isGh = location.hostname.endsWith("github.io");
-  const base = isGh ? `/${repo}/` : "";
-  document.write(`<base href="${base}">`);
-  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projetos — SeekBR</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 
   <!-- extras só pra esta página (mantém padrão do seu CSS) -->
   <style>
@@ -112,23 +106,23 @@
 
 <body>
   <script defer>
-  const pbase = "projeto/";
-  if (!location.pathname.startsWith(pbase)) {
-    location.replace(pbase);
+  const base = "/projeto/";
+  if (!location.pathname.startsWith(base)) {
+    location.replace(base);
   }
   </script>
   <!-- usa a mesma topbar do seu site -->
   <header class="topbar">
     <div class="inner">
       <div class="brand">
-        <img class="avatar" src="assets/images/seekbr.jpg" alt="SeekBR">
+        <img class="avatar" src="/assets/images/seekbr.jpg" alt="SeekBR">
         <span>SeekBR</span>
       </div>
       <nav>
-        <a href="">Home</a>
-        <a href="perfil/">Perfil</a>
-        <a href="contato/">Contato</a>
-        <a href="projeto/" aria-current="page">Projetos</a>
+        <a href="/">Home</a>
+        <a href="/perfil/">Perfil</a>
+        <a href="/contato/">Contato</a>
+        <a href="/projeto/" aria-current="page">Projetos</a>
       </nav>
     </div>
   </header>
@@ -165,19 +159,19 @@
 
     function getSlugFromPath() {
       // funciona com: /projeto/slug, /projeto/slug/, /projeto/slug?x=1, /projeto/slug/#a
-      const pbase = "projeto/";
+      const base = "/projeto/";
       const url = new URL(window.location.href);
       const path = url.pathname;
 
-      if (!path.startsWith(pbase)) return "";
-      const rest = path.slice(pbase.length);
+      if (!path.startsWith(base)) return "";
+      const rest = path.slice(base.length);
 
       // pega só o primeiro segmento depois de /projeto/
-      return rest.split("").filter(Boolean)[0] || "";
+      return rest.split("/").filter(Boolean)[0] || "";
     }
 
     async function loadCodeText(codeObj) {
-    // Aceita: {content:"..."} OU {src:"data/codes/arquivo.py"}
+    // Aceita: {content:"..."} OU {src:"/data/codes/arquivo.py"}
     if (!codeObj) return "";
 
     if (typeof codeObj.content === "string" && codeObj.content.trim() !== "") {
@@ -194,7 +188,7 @@
     }
 
     async function loadProjects() {
-      const res = await fetch("data/projetos.json", { cache: "no-store" });
+      const res = await fetch("/data/projetos.json", { cache: "no-store" });
       if (!res.ok) throw new Error("Não consegui carregar /data/projetos.json");
       return res.json();
     }
@@ -224,7 +218,7 @@
                   <span class="badge">${escapeHtml(p.type || "Projeto")}</span>
                 </div>
                 <p>${escapeHtml(p.description || "")}</p>
-                <a class="more" href="projeto/${encodeURIComponent(p.slug)}">Abrir ↗</a>
+                <a class="more" href="/projeto/${encodeURIComponent(p.slug)}">Abrir ↗</a>
               </article>
             `).join("")}
           </div>
@@ -250,7 +244,7 @@
             </div>
 
             <div class="cta-row" style="margin:0;">
-                <a class="btn" href="projeto/">← Voltar</a>
+                <a class="btn" href="/projeto/">← Voltar</a>
                 ${primaryLink ? `
                 <a class="btn primary" href="${escapeHtml(primaryLink)}"
                     ${isExternalUrl(primaryLink) ? 'target="_blank" rel="noopener"' : ''}>
@@ -327,7 +321,7 @@
               <h1 style="font-size:22px;margin:0 0 8px;">Projeto não encontrado</h1>
               <p class="muted">Não existe um projeto com slug <strong>${escapeHtml(slug)}</strong> em <strong>/data/projetos.json</strong>.</p>
               <div class="cta-row" style="margin-top:14px;">
-                <a class="btn primary" href="projeto/">Voltar para a vitrine</a>
+                <a class="btn primary" href="/projeto/">Voltar para a vitrine</a>
               </div>
             </section>
           `;
