@@ -1,6 +1,12 @@
 <!doctype html>
 <html>
   <head>
+    <script>
+    const repo = "seekbr.site";
+    const isGh = location.hostname.endsWith("github.io");
+    const base = isGh ? `/${repo}/` : "/";
+    document.write(`<base href="${base}">`);
+    </script>
     <meta charset="utf-8">
     <script>
       if (location.pathname.startsWith("/projeto/")) {

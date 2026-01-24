@@ -79,6 +79,35 @@ a:hover{ text-decoration: underline; text-decoration-color: rgba(167,139,250,.8)
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+.mini{
+  padding: 14px 16px;
+}
+.mini h3{
+  margin: 0 0 6px;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+.mini p{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color:var(--muted);
+}
+.profile-links{ 
+    display: grid; gap: 10px; 
+}
+.linkrow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.link-left{ min-width: 0; display: grid; gap: 2px; }
+.link-title{ font-weight: 700; font-size: 14px; }
+.link-sub{ color: var(--muted); font-size: 12px; }
 .project{
   padding: 16px;
   padding-top: 0px;
@@ -258,24 +287,6 @@ h1{
   padding: 22px;
   display: grid;
   gap: 12px;
-}
-.mini{
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
-}
-.mini h3{
-  margin: 0 0 6px;
-  font-size: 14px;
-  color: rgba(255,255,255,.86);
-  letter-spacing: .2px;
-}
-.mini p{
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.4;
 }
 .br{ display:block; margin-top:.65em; }
 .chiprow{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
@@ -847,25 +858,6 @@ body.modal-open{ overflow: hidden; }
 @media (max-width: 900px){
   .profile-content{ grid-template-columns: 1fr; }
 }
-
-.profile-links{ display: grid; gap: 10px; }
-.linkrow{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.05);
-}
-.linkrow:hover{
-  background: rgba(255,255,255,.08);
-  border-color: rgba(255,255,255,.16);
-}
-.link-left{ min-width: 0; display: grid; gap: 2px; }
-.link-title{ font-weight: 700; font-size: 14px; }
-.link-sub{ color: var(--muted); font-size: 12px; }
 
 .list-clean{ margin: 0; padding-left: 16px; }
 .list-clean li{ margin: 0; }
