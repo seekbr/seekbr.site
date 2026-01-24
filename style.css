@@ -58,7 +58,6 @@ body::before{
 }
 
 a{ color: inherit; text-decoration: none; }
-a:hover{ text-decoration: underline; text-decoration-color: rgba(167,139,250,.8); }
 
 /* Containers dos dois estilos */
 .container{
@@ -80,7 +79,11 @@ a:hover{ text-decoration: underline; text-decoration-color: rgba(167,139,250,.8)
   box-shadow: var(--shadow);
 }
 .mini{
+  gap: 10px;
   padding: 14px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .mini h3{
   margin: 0 0 6px;
@@ -91,11 +94,19 @@ a:hover{ text-decoration: underline; text-decoration-color: rgba(167,139,250,.8)
   margin: 0;
   font-size: 15px;
   line-height: 1.4;
-  color:var(--muted);
 }
 .mini p strong{
     font-weight:500;
     color:var(--text);
+}
+.mini img{
+  cursor: pointer;
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.mini img:hover{
+  transform: scale(1.03);
+  opacity: .9;
 }
 .profile-links{ 
     display: grid; gap: 10px; 
@@ -157,7 +168,7 @@ hr.sep{
 .topbar .inner{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
   gap: 12px;
   padding: 14px var(--pad);
   width: min(var(--max), 100%);
@@ -425,6 +436,7 @@ header.hero-card::before{
 }
 header.hero-card > *{ position:relative; }
 
+
 .title{
   display:flex;
   align-items: baseline;
@@ -437,6 +449,9 @@ header.hero-card > *{ position:relative; }
   font-size: 34px;
   letter-spacing: -0.02em;
   line-height: 1.1;
+}
+.ultra h1{
+    font-size: 80px;
 }
 .subtitle{
   margin: 10px 0 0;
@@ -766,15 +781,6 @@ body.modal-open{ overflow: hidden; }
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
-.dot.online{
-  background: rgba(34,197,94,.95);
-  box-shadow: 0 0 24px rgba(34,197,94,.55);
-}
-.dot.offline{
-  background: rgba(255,255,255,.90);
-  box-shadow: 0 0 24px rgba(99,102,241,.60);
-}
-
 /* define a altura do banner num lugar só */
 .profile-card{ 
   position: relative;
@@ -808,6 +814,7 @@ body.modal-open{ overflow: hidden; }
   top: calc(var(--banner-h) - 46px);
   left: 22px;
 }
+
 
 .head-row{
   display: flex;
@@ -875,4 +882,11 @@ body.modal-open{ overflow: hidden; }
   body{ background: #fff; color: #111; }
   header.hero-card, section.card, .card{ box-shadow:none; }
   a{ color:#111; text-decoration: underline; }
+}
+
+.centered{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

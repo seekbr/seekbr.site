@@ -10,57 +10,58 @@ async function loadPartial(id, url, callback) {
   if (callback) callback();
 }
 
-function updateProfileStatus() {
-  // ✅ Ano (só se existir)
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+async function fetchDiscordStatus(userId) {
+  const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Falha ao consultar Lanyard");
+  const json = await res.json();
 
-  // ✅ Status (só se existir)
-  const statusDot = document.getElementById("statusDot");
+  // online | idle | dnd | offline
+  return json?.data?.discord_status || "offline";
+}
+
+async function updateProfileStatusDiscord() {
+  const statusIcon = document.getElementById("statusIcon");
   const statusText = document.getElementById("statusText");
-  if (!statusDot || !statusText) return;
+  if (!statusIcon || !statusText) return;
 
-  function getBrazilNowParts() {
-    const parts = new Intl.DateTimeFormat("pt-BR", {
-      timeZone: "America/Sao_Paulo",
-      weekday: "short",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false
-    }).formatToParts(new Date());
+  try {
+    const s = await fetchDiscordStatus("1146906311582294127");
 
-    const map = {};
-    for (const p of parts) map[p.type] = p.value;
-
-    return {
-      weekday: (map.weekday || "").toLowerCase(),
-      hour: Number(map.hour),
-      minute: Number(map.minute)
+    const map = {
+      online: {
+        icon: "/assets/icons/online.png",
+        text: "Online"
+      },
+      idle: {
+        icon: "/assets/icons/idle.png",
+        text: "Ausente"
+      },
+      dnd: {
+        icon: "/assets/icons/dnd.png",
+        text: "Não perturbe"
+      },
+      offline: {
+        icon: "/assets/icons/offline.png",
+        text: "Offline"
+      }
     };
+
+    const data = map[s] || map.offline;
+
+    statusIcon.src = data.icon;
+    statusIcon.alt = data.text;
+    statusText.textContent = data.text;
+
+  } catch (e) {
+    statusIcon.src = "/assets/icons/offline.png";
+    statusIcon.alt = "Offline";
+    statusText.textContent = "Offline";
+    console.error(e);
   }
-
-  function isBusinessOpen({ weekday, hour, minute }) {
-    const isWeekend =
-      weekday.startsWith("sáb") || weekday.startsWith("sab") || weekday.startsWith("dom");
-    if (isWeekend) return false;
-
-    const nowMinutes = hour * 60 + minute;
-    const start = 12 * 60 + 30;
-    const end = 22 * 60;
-
-    return nowMinutes >= start && nowMinutes < end;
-  }
-
-  const now = getBrazilNowParts();
-  const online = isBusinessOpen(now);
-
-  statusDot.classList.toggle("online", online);
-  statusDot.classList.toggle("offline", !online);
-  statusText.textContent = online ? "Online" : "Offline";
 }
 
 loadPartial("site-header", "/partials/header.html");
 loadPartial("site-footer", "/partials/footer.html", () => {
-  updateProfileStatus(); // agora o #year EXISTE
+  updateProfileStatusDiscord();
 });
-setInterval(updateProfileStatus, 30_000);
+setInterval(updateProfileStatusDiscord, 30_000);
