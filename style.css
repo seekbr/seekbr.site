@@ -786,7 +786,7 @@ body.modal-open{ overflow: hidden; }
   position: relative;
   overflow: hidden;  /* corta nas bordas arredondadas */
   padding: 0;
-  --banner-h: 135px;
+  --banner-h: 180px;
 }
 
 /* banner absoluto só no topo (como já está) */
@@ -795,6 +795,10 @@ body.modal-open{ overflow: hidden; }
   top: 0; left: 0; right: 0;
   height: var(--banner-h);
   border-radius: var(--radius) var(--radius) 0 0;
+  background-image: url("/assets/images/banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* isso é o que faz o conteúdo COMEÇAR depois do banner */

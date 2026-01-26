@@ -41,13 +41,11 @@ openSkillsBtn?.addEventListener("click", async () => {
   document.body.classList.add("modal-open");
 });
 
-// fechar por botão (delegação)
 skillsModal.addEventListener("click", (e) => {
   if (e.target.closest("[data-modal-close]")) {
     closeModal(skillsModal, openSkillsBtn);
   }
 
-  // clique fora
   if (e.target === skillsModal) {
     closeModal(skillsModal, openSkillsBtn);
   }
@@ -71,5 +69,26 @@ conceptsModal.addEventListener("click", (e) => {
 
   if (e.target === conceptsModal) {
     closeModal(conceptsModal, openConceptsBtn);
+  }
+});
+
+const openToolsBtn = document.getElementById("openTools");
+const toolsModal = document.getElementById("toolsModal");
+
+openToolsBtn?.addEventListener("click", async () => {
+  await loadModalContent(toolsModal, "modals/tools.html");
+
+  toolsModal.classList.add("is-open");
+  toolsModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+});
+
+toolsModal.addEventListener("click", (e) => {
+  if (e.target.closest("[data-modal-close]")) {
+    closeModal(toolsModal, openToolsBtn);
+  }
+
+  if (e.target === toolsModal) {
+    closeModal(toolsModal, openToolsBtn);
   }
 });

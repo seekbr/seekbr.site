@@ -103,7 +103,10 @@
 
         <h3>Atributos</h3>
         <p>
-          Os personagens de <em>Fear of my Home</em> possuem 3 atributos: <strong>Físico</strong>, <strong>Mente</strong> e <strong>Instinto</strong>.
+          Os personagens de <em>Fear of my Home</em> possuem 3 atributos: <strong>Físico</strong>, <strong>Mente</strong> e <strong>Instinto</strong>.<br><br>
+          O <strong>Físico</strong> é usado em situações que exigem esforço físico, movimento, equilíbrio ou resistência a ferimentos.
+          A <strong>Mente</strong> é usado em ações que envolvem percepção, lógica, memória e resistência a medo ou confusão.
+          O <strong>Instinto</strong> é usado em ações rápidas, impulsivas ou guiadas pela sensação de perigo.<br><br>
           Durante a criação do seu personagem, você deve escolher um atributo para receber <strong>1</strong> ponto, um para receber <strong>2</strong> e o último para receber <strong>3</strong>.
           Após isso, você pode adicionar mais <strong>1</strong> ponto a <strong>qualquer</strong> atributo.
         </p>
@@ -145,10 +148,9 @@
 
       <!-- Capítulo 3 -->
       <section class="card" id="capitulo-3">
-        <h2><span class="dot"></span>Capítulo 3: Testes e Rolagens</h2>
+        <h2><span class="dot"></span>Capítulo 3: Testes</h2>
         <hr class="sep" />
 
-        <h3>Testes</h3>
         <p>
           Um teste acontece quando um personagem realiza uma ação cuja consequência pode <strong>variar</strong> de acordo com a rolagem.
           Se existem duas ou mais consequências possíveis, a consequência real é <strong>definida</strong> a partir dos dados.
@@ -159,7 +161,7 @@
         <p>
           A rolagem utiliza dados de 4 faces (<strong>d4</strong>) e sempre é associada a um atributo e a uma perícia. 
           Role uma quantidade de d4 iguais ao <strong>atributo</strong>. 
-          Cada valor 1 e 2 representa uma condição ruim na ação, enquanto cada valor 3-4 representa uma condição boa na ação. 
+          Cada valor <strong>1</strong> e <strong>2</strong> representa uma condição ruim na ação, enquanto cada valor <strong>3</strong> e <strong>4</strong> representa uma condição boa na ação. 
           Pra cada 2 pontos de <strong>perícia</strong> você pode ignorar um resultado dos dados.
           O jogador descreve a ação com base nas condições obtidas interpretando como os resultados bons e ruins vão afetar.
         </p>
@@ -183,6 +185,41 @@
           Isso inclui não só ao resultado dos testes mas também a outros recursos (como ignorar resultados).
         </p>
       </section>
+      <!-- Capítulo 3 -->
+      <section class="card" id="capitulo-4">
+        <h2><span class="dot"></span>Capítulo 4: Inventário</h2>
+        <hr class="sep" />
+
+        <p>
+          As crianças de Fear of my Home geralmente acordam em O Lar sem nenhum item. 
+          Porém, ao longo de sua sobrevivência, elas podem encontrar objetos, armas, roupas e outros itens.
+        </p>
+
+        <h3>Limite de Peso</h3>
+        <p>
+          Naturalmente, não é possível carregar itens infinitos, o peso dos itens é representado pela unidade de peso.
+          Você pode carregar até 5 mais seu Físico unidades de peso antes de ficar sobrecarregado.
+        </p>
+
+        <h3>Limite de Espaço</h3>
+        <p>
+          Além do peso, um personagem também não tem espaço infinito pra carregar itens, o espaço é representado pela unidade de espaço.
+          Você pode carregar até 3 mais suas mãos (por padrão 2) unidades de espaço. É impossível ultrapassar esse limite.
+        </p>
+
+        <h3>Categoria de Itens</h3>
+        <p>
+          Existem três categorias de itens: <strong>roupas</strong>, <strong>acessórios</strong> e <strong>ferramentas</strong>.<br><br>
+          <strong>Roupas</strong> são itens que precisam ser <strong>vestidos</strong> para surtirem efeito. Elas não ocupam espaço e não possuem peso relevante. Vestir ou remover uma roupa exige uma ação completa.<br><br>
+          <strong>Acessórios</strong> também precisam ser <strong>vestidos</strong> para funcionar. Assim como as roupas, não ocupam espaço, mas podem ter peso. Usar ou tirar um acessório exige uma ação básica.<br><br>
+          <strong>Ferramentas</strong> são itens que precisam estar sendo <strong>segurados</strong> para serem utilizados. Elas ocupam espaço e podem ter peso. Segurar ou guardar uma ferramenta exige uma ação simples.
+        </p>
+
+        <button class="btn-pill" id="openTools" type="button">
+            Lista de Ferramentas
+        </button>
+
+      </section>
       <div id="site-footer"></div>
     </main>
   </div>
@@ -193,6 +230,11 @@
   </div>
   <div class="modal-backdrop" id="conceptsModal" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="conceptsTitle">
+        <div class="modal-body"></div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="toolsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="toolsTitle">
         <div class="modal-body"></div>
     </div>
   </div>
