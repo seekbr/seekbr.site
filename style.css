@@ -554,14 +554,20 @@ blockquote{
 
 /* Table (style 2) */
 table{
-  width: 100%;
-  border-collapse: separate;
+  width: max-content;
+  margin: 0 auto;
+  border-collapse: collapse;
   border-spacing: 0;
   margin-top: 12px;
   overflow: hidden;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(0,0,0,.18);
+}
+.modal table{
+  width: 100%;  
+  border-collapse: separate;
+  margin-top: 12px;
 }
 thead th{
   text-align: left;
@@ -773,12 +779,11 @@ body.modal-open{ overflow: hidden; }
 /* banner */
 .banner{
   height: 135px;
-  background:
-    radial-gradient(900px 300px at 20% 0%, rgba(99,102,241,.35), transparent 60%),
-    radial-gradient(700px 260px at 80% 20%, rgba(16,185,129,.22), transparent 55%),
-    radial-gradient(900px 300px at 50% 120%, rgba(236,72,153,.14), transparent 60%),
-    rgba(255,255,255,.04);
   border-bottom: 1px solid rgba(255,255,255,.06);
+  background-image: url("/assets/images/banner.jpg");
+  background-size: cover;
+  background-position: 0px -35px;
+  background-repeat: no-repeat;
 }
 
 /* define a altura do banner num lugar só */
@@ -786,7 +791,7 @@ body.modal-open{ overflow: hidden; }
   position: relative;
   overflow: hidden;  /* corta nas bordas arredondadas */
   padding: 0;
-  --banner-h: 180px;
+  --banner-h: 350px;
 }
 
 /* banner absoluto só no topo (como já está) */
@@ -795,10 +800,6 @@ body.modal-open{ overflow: hidden; }
   top: 0; left: 0; right: 0;
   height: var(--banner-h);
   border-radius: var(--radius) var(--radius) 0 0;
-  background-image: url("/assets/images/banner.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* isso é o que faz o conteúdo COMEÇAR depois do banner */
