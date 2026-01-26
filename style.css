@@ -749,7 +749,7 @@ body.modal-open{ overflow: hidden; }
   filter: saturate(0.95) contrast(0.98) brightness(0.9);
 }
 /* glow */
-.capa::after{
+.fogo::after{
   content:"";
   position:absolute;
   inset:0;
