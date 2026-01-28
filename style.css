@@ -782,7 +782,7 @@ body.modal-open{ overflow: hidden; }
   border-bottom: 1px solid rgba(255,255,255,.06);
   background-image: url("/assets/images/banner.jpg");
   background-size: cover;
-  background-position: 0px -35px;
+  background-position: 0px -220px;
   background-repeat: no-repeat;
 }
 
@@ -791,7 +791,7 @@ body.modal-open{ overflow: hidden; }
   position: relative;
   overflow: hidden;  /* corta nas bordas arredondadas */
   padding: 0;
-  --banner-h: 350px;
+  --banner-h: 250px;
 }
 
 /* banner absoluto só no topo (como já está) */
