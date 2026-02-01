@@ -1,5 +1,14 @@
 [
   {
+    "slug": "dicer",
+    "title": "Dicer",
+    "type": "Python",
+    "description": "Biblioteca de rolagem de dados com parser de expressões e modificadores.",
+    "tags": [],
+    "links": [],
+    "code": { "language": "python", "src": "/data/codes/dicer.py"}
+  },
+  {
     "slug": "youtube-downloader",
     "title": "Youtube Downloader",
     "type": "Python",
