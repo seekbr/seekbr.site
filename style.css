@@ -400,7 +400,8 @@ footer{
 }
 .footer-inner{
   display:flex;
-  justify-content:space-between;
+  text-align: center;
+  justify-content:center;
   gap: 12px;
   flex-wrap: wrap;
   border-top: 1px solid rgba(255,255,255,.08);
@@ -777,13 +778,19 @@ body.modal-open{ overflow: hidden; }
 ================================ */
 
 /* banner */
-.banner{
+.banner {
   height: 135px;
   border-bottom: 1px solid rgba(255,255,255,.06);
-  background-image: url("/assets/images/banner.jpg");
+  background:
+    linear-gradient(
+      120deg,
+      #0b0f17 0%,
+      #2a0e1a 40%,
+      #4a0f1e 70%,
+      #0e1320 100%
+    );
   background-size: cover;
-  background-position: 0px -220px;
-  background-repeat: no-repeat;
+  box-shadow: inset 0 -40px 60px rgba(0,0,0,.6);
 }
 
 /* define a altura do banner num lugar só */
@@ -818,8 +825,10 @@ body.modal-open{ overflow: hidden; }
   position: absolute;
   top: calc(var(--banner-h) - 46px);
   left: 22px;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.06),
+    0 0 30px rgb(131, 0, 15);
 }
-
 
 .head-row{
   display: flex;
